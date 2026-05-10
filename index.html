@@ -274,6 +274,81 @@
       .tl-time { font-size: 0.62rem; }
     }
 
+    /* ─── Weekend Collapsible ───────────────────────────────────── */
+    .weekend-toggle {
+      margin-top: 3rem;
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      background: var(--white);
+      overflow: hidden;
+    }
+    .weekend-toggle-btn {
+      width: 100%; background: none; border: none; cursor: pointer;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.5rem 1.75rem; text-align: left;
+      transition: background 0.2s;
+    }
+    .weekend-toggle-btn:hover { background: rgba(184,152,90,0.05); }
+    .weekend-toggle-header {
+      display: flex; flex-direction: column; gap: 0.25rem;
+    }
+    .weekend-toggle-label {
+      font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--gold);
+    }
+    .weekend-toggle-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem; color: var(--navy);
+    }
+    .weekend-toggle-icon {
+      flex-shrink: 0; width: 24px; height: 24px;
+      position: relative; color: var(--gold);
+      transition: transform 0.3s;
+    }
+    .weekend-toggle-icon::before,
+    .weekend-toggle-icon::after {
+      content: ''; position: absolute;
+      background: currentColor; border-radius: 1px;
+    }
+    .weekend-toggle-icon::before { width: 14px; height: 2px; top: 50%; left: 50%; transform: translate(-50%,-50%); }
+    .weekend-toggle-icon::after  { width: 2px; height: 14px; top: 50%; left: 50%; transform: translate(-50%,-50%); transition: opacity 0.3s, transform 0.3s; }
+    .weekend-toggle.open .weekend-toggle-icon::after { opacity: 0; transform: translate(-50%,-50%) rotate(90deg); }
+    .weekend-content {
+      max-height: 0; overflow: hidden;
+      transition: max-height 0.5s ease;
+    }
+    .weekend-toggle.open .weekend-content { max-height: 1200px; }
+    .weekend-content-inner {
+      padding: 0 1.75rem 1.75rem;
+      border-top: 1px solid var(--border);
+    }
+    .weekend-day {
+      padding-top: 1.5rem;
+    }
+    .weekend-day + .weekend-day {
+      border-top: 1px solid var(--border);
+      margin-top: 1.5rem;
+    }
+    .weekend-day-label {
+      font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 0.5rem;
+    }
+    .weekend-event {
+      margin-bottom: 1rem;
+    }
+    .weekend-event:last-child { margin-bottom: 0; }
+    .weekend-event-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem; color: var(--navy); margin-bottom: 0.1rem;
+    }
+    .weekend-event-time {
+      font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 0.35rem;
+    }
+    .weekend-event-desc {
+      font-size: 0.88rem; color: var(--muted); line-height: 1.65; margin-bottom: 0;
+    }
+
     /* ─── Where to Stay ──────────────────────────────────────── */
     #stay { background: var(--navy); color: var(--cream); }
     #stay .section-title { color: var(--cream); }
@@ -424,10 +499,9 @@
     <ul class="nav-links" id="navLinks">
       <li><a href="#story">Our Story</a></li>
       <li><a href="#schedule">The Day</a></li>
-      <li><a href="#stay">Where to Stay</a></li>
-      <li><a href="wedding-weekend.html">The Weekend</a></li>
       <li><a href="#faq">FAQ</a></li>
       <li><a href="#fund">Registry</a></li>
+      <li><a href="#stay">Where to Stay</a></li>
       <li><a href="nyc-guide.html">NYC Guide</a></li>
     </ul>
     <span class="nav-lang">
@@ -612,28 +686,51 @@
       </div>
 
     </div>
-  </div>
-</section>
 
-<!-- ─── Where to Stay ──────────────────────────────────────── -->
-<section id="stay">
-  <div class="section-inner">
-    <p class="section-label">Where to Stay</p>
-    <h2 class="section-title">Places to <em>rest</em></h2>
-    <div class="section-rule" style="background:var(--gold);"></div>
+    <!-- Weekend Collapsible -->
+    <div class="weekend-toggle" id="weekendToggle">
+      <button class="weekend-toggle-btn" aria-expanded="false">
+        <div class="weekend-toggle-header">
+          <span class="weekend-toggle-label">July 9–11, 2026</span>
+          <span class="weekend-toggle-title">The Wedding Weekend</span>
+        </div>
+        <span class="weekend-toggle-icon"></span>
+      </button>
+      <div class="weekend-content">
+        <div class="weekend-content-inner">
 
-    <p>We've arranged a room block and discount code at a nearby hotel for our guests. Brooklyn has plenty of great options, but this is our top recommendation for convenience.</p>
+          <div class="weekend-day">
+            <p class="weekend-day-label">Thursday, July 9th</p>
+            <div class="weekend-event">
+              <p class="weekend-event-name">Picnic in Prospect Park</p>
+              <p class="weekend-event-time">Evening &nbsp;·&nbsp; Prospect Park, Brooklyn</p>
+              <p class="weekend-event-desc">Kick off the wedding weekend with a casual picnic in one of Brooklyn's most beloved spots. Bring a blanket — we'll have snacks and drinks to share.</p>
+            </div>
+            <div class="weekend-event">
+              <p class="weekend-event-name">Drinks at a local bar</p>
+              <p class="weekend-event-time">After &nbsp;·&nbsp; Brooklyn</p>
+              <p class="weekend-event-desc">Keep the night going at a neighborhood bar nearby. Details to come!</p>
+            </div>
+          </div>
 
-    <div class="hotel-card">
-      <p class="hotel-name">Pod Brooklyn</p>
-      <p class="hotel-address">247 Metropolitan Ave, Brooklyn, NY 11211</p>
-      <p style="color:rgba(247,243,236,0.75); font-size:0.95rem;">A stylish, design-forward hotel steps from the best of Williamsburg. Modern rooms, a rooftop bar, and easy access to the venue. We've negotiated a group discount — use the code below when booking.</p>
-      <p class="hotel-code">Discount code: <strong>NICKDANIEL26</strong></p>
+          <div class="weekend-day">
+            <p class="weekend-day-label">Saturday, July 11th — Daniel's Birthday</p>
+            <div class="weekend-event">
+              <p class="weekend-event-name">Brunch at Radegast Hall &amp; Biergarten</p>
+              <p class="weekend-event-time">11:00 am &nbsp;·&nbsp; 113 N 3rd St, Brooklyn</p>
+              <p class="weekend-event-desc">A beloved Williamsburg beer hall — the perfect post-wedding morning-after gathering to recap the night before.</p>
+            </div>
+            <div class="weekend-event">
+              <p class="weekend-event-name">Daniel's Birthday — Rooftop in Gowanus</p>
+              <p class="weekend-event-time">7:00 – 11:00 pm &nbsp;·&nbsp; Gowanus, Brooklyn</p>
+              <p class="weekend-event-desc">The wedding weekend closes out with a rooftop birthday celebration. More details to come!</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
     </div>
 
-    <div class="stay-note">
-      <strong style="color:rgba(247,243,236,0.7);">Getting there:</strong> The W Loft is at 240 Kent Ave, Brooklyn, about a 10-minute walk or quick Uber/Lyft from the Pod. If you're coming from Manhattan, the L train to Bedford Av or J/M/Z to Marcy Av are your best bets. Taxis and rideshares are easy to find throughout the evening.
-    </div>
   </div>
 </section>
 
@@ -806,6 +903,28 @@
   </div>
 </section>
 
+<!-- ─── Where to Stay ──────────────────────────────────────── -->
+<section id="stay">
+  <div class="section-inner">
+    <p class="section-label">Where to Stay</p>
+    <h2 class="section-title">Places to <em>rest</em></h2>
+    <div class="section-rule" style="background:var(--gold);"></div>
+
+    <p>We've arranged a room block and discount code at a nearby hotel for our guests. Brooklyn has plenty of great options, but this is our top recommendation for convenience.</p>
+
+    <div class="hotel-card">
+      <p class="hotel-name">Pod Brooklyn</p>
+      <p class="hotel-address">247 Metropolitan Ave, Brooklyn, NY 11211</p>
+      <p style="color:rgba(247,243,236,0.75); font-size:0.95rem;">A stylish, design-forward hotel steps from the best of Williamsburg. Modern rooms, a rooftop bar, and easy access to the venue. We've negotiated a group discount — use the code below when booking.</p>
+      <p class="hotel-code">Discount code: <strong>NICKDANIEL26</strong></p>
+    </div>
+
+    <div class="stay-note">
+      <strong style="color:rgba(247,243,236,0.7);">Getting there:</strong> The W Loft is at 240 Kent Ave, Brooklyn, about a 10-minute walk or quick Uber/Lyft from the Pod. If you're coming from Manhattan, the L train to Bedford Av or J/M/Z to Marcy Av are your best bets. Taxis and rideshares are easy to find throughout the evening.
+    </div>
+  </div>
+</section>
+
 <!-- ─── Footer ─────────────────────────────────────────────── -->
 <footer>
   <p class="footer-names">Nick &amp; Daniel</p>
@@ -829,6 +948,14 @@
       document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
       if (!wasOpen) item.classList.add('open');
     });
+  });
+
+  // Weekend toggle
+  const weekendToggle = document.getElementById('weekendToggle');
+  const weekendBtn = weekendToggle.querySelector('.weekend-toggle-btn');
+  weekendBtn.addEventListener('click', () => {
+    const isOpen = weekendToggle.classList.toggle('open');
+    weekendBtn.setAttribute('aria-expanded', isOpen);
   });
 </script>
 
