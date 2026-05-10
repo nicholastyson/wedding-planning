@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NYC Guide — Nick & Daniel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --sage:   #8a9e7a;
+      --navy:   #1c2b4a;
+      --gold:   #b8985a;
+      --gold-lt:#d4b87a;
+      --cream:  #f7f3ec;
+      --white:  #ffffff;
+      --text:   #2e2e2e;
+      --muted:  #6b6b6b;
+      --border: #ddd6c8;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Jost', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      font-weight: 300;
+      line-height: 1.75;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    /* ─── Navigation ─────────────────────────────────────────── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(28, 43, 74, 0.97);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(184,152,90,0.3);
+    }
+    .nav-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 2rem; height: 64px;
+    }
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem; font-style: italic;
+      color: var(--gold-lt); letter-spacing: 0.04em;
+    }
+    .nav-back {
+      font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase;
+      color: rgba(247,243,236,0.7); display: flex; align-items: center; gap: 0.5rem;
+      transition: color 0.2s;
+    }
+    .nav-back:hover { color: var(--gold-lt); }
+    .nav-back svg { width: 12px; }
+
+    /* ─── Hero ───────────────────────────────────────────────── */
+    .page-hero {
+      background: var(--navy); text-align: center;
+      padding: 10rem 2rem 5rem;
+      position: relative; overflow: hidden;
+    }
+    .page-hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 60% 50% at 50% 30%, rgba(184,152,90,0.12) 0%, transparent 70%);
+    }
+    .page-hero-content { position: relative; z-index: 1; }
+    .page-hero-eyebrow {
+      font-size: 0.68rem; letter-spacing: 0.28em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 1rem;
+    }
+    .page-hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.5rem, 7vw, 5rem);
+      font-weight: 300; font-style: italic;
+      color: var(--cream); line-height: 1.1; margin-bottom: 1rem;
+    }
+    .page-hero-title em { color: var(--gold); }
+    .page-hero-sub {
+      font-size: 0.85rem; color: rgba(247,243,236,0.6);
+      max-width: 480px; margin: 0 auto;
+    }
+    .page-hero-divider {
+      width: 44px; height: 1px; background: var(--gold);
+      margin: 1.5rem auto;
+    }
+
+    /* ─── Section Shell ──────────────────────────────────────── */
+    .guide-section { padding: 5rem 2rem; }
+    .guide-section:nth-child(even) { background: var(--white); }
+    .guide-section:nth-child(odd)  { background: var(--cream); }
+    .section-inner { max-width: 900px; margin: 0 auto; }
+
+    .section-label::before { content: '✿'; font-size: 0.55rem; margin-right: 0.5rem; color: #8a9e7a; opacity: 0.8; vertical-align: middle; }
+    .section-label {
+      font-size: 0.65rem; letter-spacing: 0.28em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 0.75rem;
+    }
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      color: var(--navy); margin-bottom: 0.4rem; line-height: 1.15;
+    }
+    .section-title em { color: var(--gold); font-style: italic; }
+    .section-rule {
+      width: 44px; height: 1px; background: var(--gold);
+      margin: 1.2rem 0 2rem;
+    }
+    .section-intro {
+      color: var(--muted); font-size: 0.95rem;
+      max-width: 600px; margin-bottom: 2.5rem;
+    }
+
+    /* ─── Rec Cards ──────────────────────────────────────────── */
+    .rec-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.25rem;
+    }
+    .rec-card {
+      border: 1px solid var(--border); border-radius: 2px;
+      padding: 1.5rem; background: var(--white);
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .guide-section:nth-child(even) .rec-card { background: var(--cream); }
+    .rec-card:hover { border-color: var(--gold); box-shadow: 0 4px 20px rgba(184,152,90,0.1); }
+    .rec-card-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem; color: var(--navy); margin-bottom: 0.15rem;
+    }
+    .rec-card-meta {
+      font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 0.6rem;
+    }
+    .rec-card-note {
+      font-size: 0.88rem; color: var(--muted); line-height: 1.6;
+    }
+    .rec-card-link {
+      display: inline-block; margin-top: 0.8rem;
+      font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--gold); border-bottom: 1px solid rgba(184,152,90,0.4);
+      padding-bottom: 1px; transition: border-color 0.2s;
+    }
+    .rec-card-link:hover { border-color: var(--gold); }
+
+    /* ─── Footer ─────────────────────────────────────────────── */
+    footer {
+      background: var(--navy); color: rgba(247,243,236,0.45);
+      text-align: center; padding: 3rem 2rem;
+      font-size: 0.72rem; letter-spacing: 0.12em;
+    }
+    .footer-names {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem; font-style: italic;
+      color: var(--gold-lt); margin-bottom: 0.75rem;
+    }
+    .footer-back {
+      display: inline-block; margin-top: 1rem;
+      font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--gold); border: 1px solid rgba(184,152,90,0.4);
+      padding: 0.5rem 1.2rem; border-radius: 2px;
+      transition: border-color 0.2s;
+    }
+    .footer-back:hover { border-color: var(--gold); }
+
+    @media (max-width: 600px) {
+      .rec-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ─── Navigation ─────────────────────────────────────────── -->
+<nav>
+  <div class="nav-inner">
+    <a href="wedding.html" class="nav-logo">Nick &amp; Daniel</a>
+    <a href="wedding.html" class="nav-back">
+      <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 1L3 6l5 5"/></svg>
+      Back to wedding site
+    </a>
+  </div>
+</nav>
+
+<!-- ─── Hero ──────────────────────────────────────────────── -->
+<div class="page-hero">
+  <div class="page-hero-content">
+    <p class="page-hero-eyebrow">July 2026</p>
+    <h1 class="page-hero-title">Our favorite <em>New York</em></h1>
+    <div class="page-hero-divider"></div>
+    <p class="page-hero-sub">A few of our favorite spots to eat, drink, explore, and enjoy while you're in town. Welcome to our city!</p>
+  </div>
+</div>
+
+<!-- ─── Eat ───────────────────────────────────────────────── -->
+<section class="guide-section">
+  <div class="section-inner">
+    <p class="section-label">Eat</p>
+    <h2 class="section-title">Restaurants &amp; <em>Coffee</em></h2>
+    <div class="section-rule"></div>
+    <p class="section-intro">Some of our go-to spots and longtime favorites across the city.</p>
+    <div class="rec-grid">
+
+      <div class="rec-card">
+        <p class="rec-card-name">[Restaurant Name]</p>
+        <p class="rec-card-meta">Neighborhood &nbsp;·&nbsp; Type of food</p>
+        <p class="rec-card-note">Your note about why you love it.</p>
+        <a href="#" class="rec-card-link">View →</a>
+      </div>
+
+      <div class="rec-card">
+        <p class="rec-card-name">[Restaurant Name]</p>
+        <p class="rec-card-meta">Neighborhood &nbsp;·&nbsp; Type of food</p>
+        <p class="rec-card-note">Your note about why you love it.</p>
+        <a href="#" class="rec-card-link">View →</a>
+      </div>
+
+      <div class="rec-card">
+        <p class="rec-card-name">[Restaurant Name]</p>
+        <p class="rec-card-meta">Neighborhood &nbsp;·&nbsp; Type of food</p>
+        <p class="rec-card-note">Your note about why you love it.</p>
+        <a href="#" class="rec-card-link">View →</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ─── Drink ─────────────────────────────────────────────── -->
+<section class="guide-section">
+  <div class="section-inner">
+    <p class="section-label">Drink</p>
+    <h2 class="section-title">Bars &amp; <em>Nightlife</em></h2>
+    <div class="section-rule"></div>
+    <p class="section-intro">Great spots for a drink before or after the festivities — or for the night owls among you.</p>
+    <div class="rec-grid">
+
+      <div class="rec-card">
+        <p class="rec-card-name">[Bar Name]</p>
+        <p class="rec-card-meta">Neighborhood &nbsp;·&nbsp; Vibe</p>
+        <p class="rec-card-note">Your note about why you love it.</p>
+        <a href="#" class="rec-card-link">View →</a>
+      </div>
+
+      <div class="rec-card">
+        <p class="rec-card-name">[Bar Name]</p>
+        <p class="rec-card-meta">Neighborhood &nbsp;·&nbsp; Vibe</p>
+        <p class="rec-card-note">Your note about why you love it.</p>
+        <a href="#" class="rec-card-link">View →</a>
+      </div>
+
+      <div class="rec-card">
+        <p class="rec-card-name">[Bar Name]</p>
+        <p class="rec-card-meta">Neighborhood &nbsp;·&nbsp; Vibe</p>
+        <p class="rec-card-note">Your note about why you love it.</p>
+        <a href="#" class="rec-card-link">View →</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ─── See & Do ──────────────────────────────────────────── -->
+<section class="guide-section">
+  <div class="section-inner">
+    <p class="section-label">See & Do</p>
+    <h2 class="section-title">Things to <em>explore</em></h2>
+    <div class="section-rule"></div>
+    <p class="section-intro">Museums, parks, neighborhoods, and experiences worth making time for.</p>
+    <div class="rec-grid">
+
+      <div class="rec-card">
+        <p class="rec-card-name">[Place or Activity]</p>
+        <p class="rec-card-meta">Neighborhood &nbsp;·&nbsp; Type</p>
+        <p class="rec-card-note">Your note about why you love it.</p>
+        <a href="#" class="rec-card-link">View →</a>
+      </div>
+
+      <div class="rec-card">
+        <p class="rec-card-name">[Place or Activity]</p>
+        <p class="rec-card-meta">Neighborhood &nbsp;·&nbsp; Type</p>
+        <p class="rec-card-note">Your note about why you love it.</p>
+        <a href="#" class="rec-card-link">View →</a>
+      </div>
+
+      <div class="rec-card">
+        <p class="rec-card-name">[Place or Activity]</p>
+        <p class="rec-card-meta">Neighborhood &nbsp;·&nbsp; Type</p>
+        <p class="rec-card-note">Your note about why you love it.</p>
+        <a href="#" class="rec-card-link">View →</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ─── Stay ──────────────────────────────────────────────── -->
+<section class="guide-section">
+  <div class="section-inner">
+    <p class="section-label">Stay</p>
+    <h2 class="section-title">Neighborhoods worth <em>exploring</em></h2>
+    <div class="section-rule"></div>
+    <p class="section-intro">Brooklyn and beyond — the areas we'd point anyone toward for a great New York experience.</p>
+    <div class="rec-grid">
+
+      <div class="rec-card">
+        <p class="rec-card-name">[Neighborhood]</p>
+        <p class="rec-card-meta">Borough</p>
+        <p class="rec-card-note">Your note about what makes it special.</p>
+      </div>
+
+      <div class="rec-card">
+        <p class="rec-card-name">[Neighborhood]</p>
+        <p class="rec-card-meta">Borough</p>
+        <p class="rec-card-note">Your note about what makes it special.</p>
+      </div>
+
+      <div class="rec-card">
+        <p class="rec-card-name">[Neighborhood]</p>
+        <p class="rec-card-meta">Borough</p>
+        <p class="rec-card-note">Your note about what makes it special.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ─── Footer ───────────────────────────────────────────── -->
+<footer>
+  <p class="footer-names">Nick &amp; Daniel</p>
+  <p>Friday, July 10, 2026 &nbsp;·&nbsp; The W Loft, Brooklyn, New York</p>
+  <a href="wedding.html" class="footer-back">← Back to wedding site</a>
+</footer>
+
+</body>
+</html>

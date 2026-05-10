@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nick & Daniel — July 10, 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ─── Tokens ─────────────────────────────────────────────── */
+    :root {
+      --navy:   #1c2b4a;
+      --gold:   #b8985a;
+      --gold-lt:#d4b87a;
+      --sage:   #8a9e7a;
+      --sage-lt:rgba(138,158,122,0.15);
+      --cream:  #f7f3ec;
+      --white:  #ffffff;
+      --text:   #2e2e2e;
+      --muted:  #6b6b6b;
+      --border: #ddd6c8;
+    }
+
+    /* ─── Reset ──────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Jost', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      font-weight: 300;
+      line-height: 1.75;
+    }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+
+    /* ─── Botanical accents ──────────────────────────────────── */
+
+    .section-label::before {
+      content: '✿';
+      font-size: 0.55rem; margin-right: 0.5rem;
+      color: var(--sage); opacity: 0.8;
+      vertical-align: middle;
+    }
+
+    /* ─── Typography ─────────────────────────────────────────── */
+    .serif        { font-family: 'Cormorant Garamond', serif; }
+    h1, h2, h3    { font-family: 'Cormorant Garamond', serif; font-weight: 400; }
+
+    /* ─── Navigation ─────────────────────────────────────────── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(28, 43, 74, 0.97);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(184,152,90,0.3);
+    }
+    .nav-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 2rem; height: 64px;
+    }
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem; font-style: italic;
+      color: var(--gold-lt); letter-spacing: 0.04em;
+    }
+    .nav-links {
+      display: flex; gap: 2.5rem; list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.72rem; letter-spacing: 0.18em;
+      text-transform: uppercase; color: rgba(247,243,236,0.8);
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--gold-lt); }
+
+    /* language toggle */
+    .nav-lang {
+      font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase;
+      color: rgba(247,243,236,0.5);
+      display: flex; align-items: center; gap: 0.35rem;
+      margin-left: 2rem;
+      white-space: nowrap;
+    }
+    .nav-lang a {
+      color: rgba(247,243,236,0.5);
+      transition: color 0.2s;
+    }
+    .nav-lang a:hover { color: var(--gold-lt); }
+    .nav-lang .active {
+      color: var(--gold);
+      font-weight: 500;
+    }
+
+    /* mobile nav toggle */
+    .nav-toggle { display: none; background: none; border: none; cursor: pointer; }
+    .nav-toggle span {
+      display: block; width: 22px; height: 2px;
+      background: var(--gold-lt); margin: 4px 0; transition: 0.3s;
+    }
+
+    /* ─── Hero ───────────────────────────────────────────────── */
+    #home {
+      min-height: 100vh;
+      background: var(--navy);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center; padding: 8rem 2rem 6rem;
+      position: relative; overflow: hidden;
+    }
+    #home::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 60% 50% at 50% 30%, rgba(184,152,90,0.12) 0%, transparent 70%),
+        radial-gradient(ellipse 80% 40% at 20% 80%, rgba(28,43,74,0.6) 0%, transparent 60%);
+    }
+    .hero-content { position: relative; z-index: 1; }
+    .hero-eyebrow {
+      font-size: 0.68rem; letter-spacing: 0.28em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 1.5rem;
+    }
+    .hero-names {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3.5rem, 10vw, 7rem);
+      font-weight: 300; font-style: italic;
+      color: var(--cream); line-height: 1;
+      margin-bottom: 0.4rem;
+    }
+    .hero-ampersand { color: var(--gold); }
+    .hero-divider {
+      width: 60px; height: 1px; background: var(--gold);
+      margin: 1.8rem auto;
+    }
+    .hero-date {
+      font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase;
+      color: rgba(247,243,236,0.7); margin-bottom: 0.6rem;
+    }
+    .hero-venue {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem; font-style: italic;
+      color: var(--gold-lt);
+    }
+    .hero-location {
+      font-size: 0.7rem; letter-spacing: 0.16em; text-transform: uppercase;
+      color: rgba(247,243,236,0.5); margin-top: 0.4rem;
+    }
+    .hero-scroll {
+      position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+      color: rgba(247,243,236,0.4); font-size: 0.6rem;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      animation: bounce 2.5s infinite;
+    }
+    .hero-scroll svg { width: 14px; opacity: 0.5; }
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50%       { transform: translateX(-50%) translateY(6px); }
+    }
+
+    /* ─── Section Shell ──────────────────────────────────────── */
+    section { padding: 6rem 2rem; }
+    .section-inner { max-width: 800px; margin: 0 auto; }
+    .section-inner-wide { max-width: 1000px; margin: 0 auto; }
+
+    .section-label {
+      font-size: 0.65rem; letter-spacing: 0.28em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 0.75rem;
+    }
+    .section-title {
+      font-size: clamp(2rem, 5vw, 3rem);
+      color: var(--navy); margin-bottom: 0.5rem; line-height: 1.15;
+    }
+    .section-title em { color: var(--gold); font-style: italic; }
+    .section-rule {
+      width: 44px; height: 1px; background: var(--gold);
+      margin: 1.4rem 0 2.2rem;
+    }
+    p { margin-bottom: 1.2rem; }
+    p:last-child { margin-bottom: 0; }
+
+    /* ─── Our Story ──────────────────────────────────────────── */
+    #story { background: var(--white); position: relative; overflow: hidden; }
+    #story::after {
+      content: '';
+      position: absolute; bottom: -40px; right: -40px;
+      width: 320px; height: 320px; pointer-events: none;
+      background: radial-gradient(ellipse at center, rgba(138,158,122,0.08) 0%, transparent 70%);
+    }
+    .story-pull { border-left-color: var(--sage); }
+    .story-photos {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 0.75rem;
+      margin-top: 3rem;
+    }
+    .story-photos img {
+      width: 100%; aspect-ratio: 4/3; object-fit: cover;
+      border-radius: 2px;
+      filter: saturate(0.92);
+      transition: filter 0.3s, transform 0.3s;
+    }
+    .story-photos img:hover { filter: saturate(1.05); transform: scale(1.01); }
+    .story-photos .photo-tall {
+      grid-row: span 1;
+    }
+    @media (max-width: 600px) {
+      .story-photos { grid-template-columns: 1fr 1fr; }
+      .story-photos img:last-child { grid-column: span 2; }
+    }
+    .story-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;
+      align-items: start; margin-top: 2rem;
+    }
+    .story-pull {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.65rem; line-height: 1.5; color: var(--navy);
+      font-style: italic; border-left: 2px solid var(--gold);
+      padding-left: 1.5rem; margin-bottom: 1.5rem;
+    }
+
+    /* ─── Plan for the Day ───────────────────────────────────── */
+    #schedule { background: var(--cream); }
+    .venue-address {
+      display: inline-block;
+      border: 1px solid var(--border);
+      padding: 0.9rem 1.5rem; margin-bottom: 3rem;
+      border-radius: 2px;
+    }
+    .venue-address-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem; color: var(--navy); margin-bottom: 0.15rem;
+    }
+    .venue-address-line {
+      font-size: 0.72rem; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--muted);
+    }
+    .timeline { position: relative; }
+    .timeline::before {
+      content: ''; position: absolute;
+      left: 110px; top: 8px; bottom: 8px; width: 1px;
+      background: var(--border);
+    }
+    .tl-item {
+      display: grid;
+      grid-template-columns: 100px 20px 1fr;
+      gap: 0 1.25rem;
+      align-items: start;
+      margin-bottom: 2.2rem;
+    }
+    .tl-item--last { margin-bottom: 0; }
+    .tl-time {
+      font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--gold); padding-top: 0.15rem; text-align: right;
+    }
+    .tl-dot {
+      width: 10px; height: 10px; border-radius: 50%;
+      background: var(--white); border: 2px solid var(--gold);
+      margin-top: 0.2rem; position: relative; z-index: 1;
+      justify-self: center;
+    }
+    .tl-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem; color: var(--navy);
+      margin-bottom: 0.2rem;
+    }
+    .tl-desc { font-size: 0.9rem; color: var(--muted); margin-bottom: 0; }
+
+    @media (max-width: 500px) {
+      .timeline::before { left: 80px; }
+      .tl-item { grid-template-columns: 70px 16px 1fr; }
+      .tl-time { font-size: 0.62rem; }
+    }
+
+    /* ─── Where to Stay ──────────────────────────────────────── */
+    #stay { background: var(--navy); color: var(--cream); }
+    #stay .section-title { color: var(--cream); }
+    #stay .section-label { color: var(--gold-lt); }
+    #stay p { color: rgba(247,243,236,0.8); }
+    .hotel-card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(184,152,90,0.3);
+      border-radius: 2px; padding: 2rem;
+      margin-top: 2rem;
+    }
+    .hotel-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem; color: var(--gold-lt); margin-bottom: 0.3rem;
+    }
+    .hotel-address {
+      font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase;
+      color: rgba(247,243,236,0.45); margin-bottom: 1rem;
+    }
+    .hotel-code {
+      display: inline-block;
+      font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase;
+      background: rgba(184,152,90,0.2); border: 1px solid var(--gold);
+      color: var(--gold-lt); padding: 0.35rem 0.9rem;
+      border-radius: 2px; margin-top: 0.8rem;
+    }
+    .hotel-code strong { font-weight: 500; }
+    .stay-note {
+      margin-top: 2.5rem; padding: 1.5rem;
+      border-left: 2px solid rgba(184,152,90,0.5);
+      color: rgba(247,243,236,0.6); font-size: 0.9rem;
+    }
+
+    /* ─── FAQ ────────────────────────────────────────────────── */
+    #faq { background: var(--cream); }
+    .faq-list { margin-top: 2rem; }
+    .faq-item {
+      border-bottom: 1px solid var(--border);
+    }
+    .faq-item:first-child { border-top: 1px solid var(--border); }
+    .faq-question {
+      width: 100%; background: none; border: none; cursor: pointer;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.3rem 0; text-align: left;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem; color: var(--navy);
+      gap: 1rem;
+    }
+    .faq-question:hover { color: var(--gold); }
+    .faq-icon {
+      flex-shrink: 0; width: 20px; height: 20px;
+      position: relative; color: var(--gold);
+      transition: transform 0.3s;
+    }
+    .faq-icon::before,
+    .faq-icon::after {
+      content: ''; position: absolute;
+      background: currentColor; border-radius: 1px;
+    }
+    .faq-icon::before { width: 12px; height: 1.5px; top: 50%; left: 50%; transform: translate(-50%,-50%); }
+    .faq-icon::after  { width: 1.5px; height: 12px; top: 50%; left: 50%; transform: translate(-50%,-50%); transition: opacity 0.3s, transform 0.3s; }
+    .faq-item.open .faq-icon::after { opacity: 0; transform: translate(-50%,-50%) rotate(90deg); }
+    .faq-answer {
+      max-height: 0; overflow: hidden;
+      transition: max-height 0.4s ease, padding 0.3s ease;
+      font-size: 0.95rem; color: var(--muted); line-height: 1.8;
+    }
+    .faq-answer-inner { padding-bottom: 1.3rem; }
+    .faq-item.open .faq-answer { max-height: 400px; }
+
+    /* ─── Honeymoon Fund ─────────────────────────────────────── */
+    #fund { background: var(--white); text-align: center; }
+    #fund .section-label { text-align: center; }
+    #fund .section-title { text-align: center; }
+    #fund .section-rule { margin-left: auto; margin-right: auto; }
+    .fund-intro {
+      max-width: 600px; margin: 0 auto 3rem;
+      color: var(--muted); font-size: 0.95rem;
+    }
+    .fund-cards {
+      display: flex; flex-wrap: wrap; gap: 1.5rem;
+      justify-content: center; margin-bottom: 3rem;
+    }
+    .fund-card {
+      border: 1px solid var(--border); border-radius: 2px;
+      padding: 2rem 2.5rem; min-width: 200px; flex: 1; max-width: 280px;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .fund-card:hover { border-color: var(--gold); box-shadow: 0 4px 24px rgba(184,152,90,0.12); }
+    .fund-card-flag { font-size: 1.6rem; margin-bottom: 0.5rem; }
+    .fund-card-label {
+      font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 0.75rem;
+    }
+    .fund-card-platform {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem; color: var(--navy); margin-bottom: 0.3rem;
+    }
+    .fund-card-handle {
+      font-size: 0.85rem; color: var(--gold);
+      font-weight: 400; letter-spacing: 0.05em;
+    }
+    .fund-card-btn {
+      display: inline-block; margin-top: 1.2rem;
+      font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase;
+      border: 1px solid var(--navy); color: var(--navy);
+      padding: 0.55rem 1.3rem; border-radius: 2px;
+      transition: background 0.2s, color 0.2s;
+    }
+    .fund-card-btn:hover { background: var(--navy); color: var(--cream); }
+    .fund-also {
+      font-size: 0.85rem; color: var(--muted);
+      border-top: 1px solid var(--border); padding-top: 2rem;
+      max-width: 500px; margin: 0 auto;
+    }
+
+    /* ─── Footer ─────────────────────────────────────────────── */
+    footer {
+      background: var(--navy); color: rgba(247,243,236,0.45);
+      text-align: center; padding: 3rem 2rem;
+      font-size: 0.72rem; letter-spacing: 0.12em;
+    }
+    footer .footer-names {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem; font-style: italic;
+      color: var(--gold-lt); margin-bottom: 0.75rem;
+      letter-spacing: 0.05em;
+    }
+
+    /* ─── Responsive ─────────────────────────────────────────── */
+    @media (max-width: 700px) {
+      .nav-links { display: none; flex-direction: column; position: absolute; top: 64px; left: 0; right: 0; background: var(--navy); padding: 1.5rem 2rem; gap: 1.5rem; border-bottom: 1px solid rgba(184,152,90,0.2); }
+      .nav-links.open { display: flex; }
+      .nav-toggle { display: block; }
+      .nav-lang { display: none; }
+      .story-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .fund-cards { flex-direction: column; align-items: center; }
+      .fund-card { max-width: 100%; width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ─── Navigation ─────────────────────────────────────────── -->
+<nav>
+  <div class="nav-inner">
+    <a href="#home" class="nav-logo">Nick &amp; Daniel</a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#story">Our Story</a></li>
+      <li><a href="#schedule">The Day</a></li>
+      <li><a href="#stay">Where to Stay</a></li>
+      <li><a href="wedding-weekend.html">The Weekend</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a href="#fund">Registry</a></li>
+      <li><a href="nyc-guide.html">NYC Guide</a></li>
+    </ul>
+    <span class="nav-lang">
+      <span class="active">EN</span>
+      <span style="color:rgba(247,243,236,0.25);">·</span>
+      <a href="wedding-fr.html">FR</a>
+    </span>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ─── Hero ───────────────────────────────────────────────── -->
+<section id="home">
+  <div class="hero-content">
+    <p class="hero-eyebrow">We're getting married</p>
+    <h1 class="hero-names">
+      Nick <span class="hero-ampersand">&amp;</span> Daniel
+    </h1>
+    <!-- Manhattan skyline as viewed from the W Loft, Brooklyn -->
+    <svg viewBox="0 0 480 82" width="100%" style="max-width:520px; display:block; margin:2rem auto 1.6rem;" aria-label="Manhattan skyline">
+      <g fill="rgba(247,243,236,0.1)" stroke="rgba(184,152,90,0.5)" stroke-width="0.7" stroke-linejoin="round">
+        <!-- Far left — lower buildings -->
+        <rect x="0"   y="56" width="16" height="14"/>
+        <rect x="18"  y="50" width="14" height="20"/>
+        <rect x="34"  y="54" width="18" height="16"/>
+        <!-- Rising left cluster -->
+        <rect x="54"  y="46" width="16" height="24"/>
+        <rect x="72"  y="40" width="20" height="30"/>
+        <rect x="94"  y="44" width="14" height="26"/>
+        <!-- Pre-ESB buildings -->
+        <rect x="110" y="36" width="16" height="34"/>
+        <rect x="128" y="42" width="14" height="28"/>
+        <!-- EMPIRE STATE BUILDING — stepped setbacks -->
+        <rect x="142" y="42" width="20" height="28"/>
+        <rect x="145" y="34" width="14" height="10"/>
+        <rect x="148" y="26" width="8"  height="10"/>
+        <rect x="150" y="20" width="4"  height="8"/>
+        <!-- Post-ESB -->
+        <rect x="165" y="40" width="16" height="30"/>
+        <rect x="183" y="36" width="18" height="34"/>
+        <!-- CHRYSLER BUILDING — art deco crown -->
+        <rect x="203" y="42" width="18" height="28"/>
+        <rect x="206" y="34" width="12" height="10"/>
+        <rect x="208" y="26" width="8"  height="10"/>
+        <polygon points="212,14 206,26 218,26"/>
+        <!-- Mid-right cluster -->
+        <rect x="224" y="38" width="16" height="32"/>
+        <rect x="242" y="42" width="18" height="28"/>
+        <rect x="262" y="34" width="14" height="36"/>
+        <!-- Tall thin tower (432 Park style) -->
+        <rect x="280" y="20" width="7"  height="50"/>
+        <!-- More midtown -->
+        <rect x="290" y="36" width="16" height="34"/>
+        <rect x="308" y="40" width="14" height="30"/>
+        <rect x="324" y="44" width="16" height="26"/>
+        <!-- ONE WORLD TRADE CENTER — tapered obelisk -->
+        <polygon points="358,6 348,70 368,70"/>
+        <!-- Right side — buildings receding -->
+        <rect x="374" y="46" width="16" height="24"/>
+        <rect x="392" y="50" width="18" height="20"/>
+        <rect x="412" y="54" width="16" height="16"/>
+        <rect x="430" y="56" width="14" height="14"/>
+        <rect x="446" y="58" width="12" height="12"/>
+        <rect x="460" y="60" width="20" height="10"/>
+      </g>
+      <!-- Antennae -->
+      <line x1="152" y1="20" x2="152" y2="5"  stroke="rgba(184,152,90,0.7)" stroke-width="1.2" stroke-linecap="round"/>
+      <line x1="212" y1="14" x2="212" y2="4"  stroke="rgba(184,152,90,0.65)" stroke-width="1"   stroke-linecap="round"/>
+      <line x1="358" y1="6"  x2="358" y2="0"  stroke="rgba(184,152,90,0.6)"  stroke-width="1.2" stroke-linecap="round"/>
+      <line x1="284" y1="20" x2="284" y2="13" stroke="rgba(184,152,90,0.45)" stroke-width="0.9" stroke-linecap="round"/>
+      <!-- East River -->
+      <path d="M 0,73 Q 120,70 240,73 Q 360,76 480,73" stroke="rgba(184,152,90,0.45)" stroke-width="1" fill="none"/>
+      <rect x="0" y="73" width="480" height="9" fill="rgba(184,152,90,0.04)" stroke="none"/>
+    </svg>
+    <p class="hero-date">Friday, July 10, 2026 &nbsp;·&nbsp; 5:30 PM EDT</p>
+    <p class="hero-venue">The W Loft</p>
+    <p class="hero-location">240 Kent Ave &nbsp;·&nbsp; Brooklyn, New York</p>
+  </div>
+  <div class="hero-scroll">
+    <svg viewBox="0 0 12 18" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 1v14M1 10l5 6 5-6"/></svg>
+    Scroll
+  </div>
+</section>
+
+<!-- ─── Our Story ──────────────────────────────────────────── -->
+<section id="story">
+  <div class="section-inner">
+    <p class="section-label">Our Story</p>
+    <h2 class="section-title">How it all <em>began</em></h2>
+    <div class="section-rule"></div>
+
+    <div class="story-grid">
+      <div>
+        <p class="story-pull serif">"We can really say we've crossed an ocean for each other."</p>
+        <p>Our story goes back to a hot summer day in June 2019, filled with the smell of chlorine in the air — poolside at an international LGBT swim competition in Flushing, Queens. Daniel approached Nick with a smooth opener, asking if he could take a photo with "New York" (the team logo across Nick's swimsuit, from his team the New York Front Runners). That quickly turned into drinks and dinner, followed by a transatlantic long-distance romance that lasted a short nine months… before a global pandemic started shutting international borders.</p>
+        <p>With news of the US border closing, Daniel had to make a rapid-fire decision. Could he make it to the US before the borders were shut for good? Heading straight for the airport, he made it on one of the last flights out of France — and we were able to spend the start of the pandemic together in a tiny apartment in Brooklyn.</p>
+      </div>
+      <div>
+        <p>Going from long-distance to "New York on pause" together was shockingly easy. We settled into an easy rhythm: runs around Prospect Park, socially distanced picnics with friends, bagel Fridays from our local shop, and finally just being in the same city as one another.</p>
+        <p>But as 2020 wore on, it became clear Daniel wouldn't be able to renew his visa. With shifting rules and the French border still technically closed, Nick started looking for a way into France. The only option was a student visa — so Nick applied to one masters program, which happened to be entirely in French, a language he barely spoke at the time. With some gay magic clearly on our side, the university accepted him, and he moved to France in August 2020.</p>
+        <p>Since then, we've been living in Paris, going through six years of adventures together: masters programs, new jobs, bike trips, hikes, travels across Europe, the bureaucratic nightmares of being an international couple — and buying and renovating our own apartment in Paris.</p>
+        <p>We are so excited to be celebrating our wedding day with our international family, and we are so grateful to all of you for filling our lives with so much love.</p>
+      </div>
+    </div>
+    <div class="story-photos">
+      <img src="Photo1.jpeg" alt="Nick and Daniel in Budapest" />
+      <img src="Photo2.jpeg" alt="Nick and Daniel in Paris" />
+      <img src="Photo3.jpeg" alt="Nick and Daniel on a bike trip" />
+    </div>
+
+  </div>
+</section>
+
+<!-- ─── Plan for the Day ───────────────────────────────────── -->
+<section id="schedule">
+  <div class="section-inner">
+    <p class="section-label">Plan for the Day</p>
+    <h2 class="section-title">Friday, July <em>10th</em></h2>
+    <div class="section-rule"></div>
+
+    <div class="venue-address">
+      <p class="venue-address-name">The W Loft</p>
+      <p class="venue-address-line">240 Kent Ave, Brooklyn, NY 11211</p>
+    </div>
+
+    <div class="timeline">
+
+      <div class="tl-item">
+        <div class="tl-time">5:00 pm</div>
+        <div class="tl-dot"></div>
+        <div class="tl-body">
+          <p class="tl-title">Doors Open</p>
+          <p class="tl-desc">Guests arrive and are welcomed with refreshments.</p>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-time">5:30 pm</div>
+        <div class="tl-dot"></div>
+        <div class="tl-body">
+          <p class="tl-title">Ceremony</p>
+          <p class="tl-desc">We say our vows. Please silence phones and cameras so our photographer can work their magic — we'll have plenty of time to celebrate together after.</p>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-time">5:50 pm</div>
+        <div class="tl-dot"></div>
+        <div class="tl-body">
+          <p class="tl-title">Champagne Toast &amp; Cocktail Hour</p>
+          <p class="tl-desc">Raise a glass! Champagne, cocktails, and hors d'oeuvres as we kick off the evening together.</p>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-time">7:30 pm</div>
+        <div class="tl-dot"></div>
+        <div class="tl-body">
+          <p class="tl-title">Dinner</p>
+          <p class="tl-desc">A Peruvian-inspired buffet dinner — featuring ceviché, aji de gallina, and more — followed by a cheese course and baguettes.</p>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-time">9:00 pm</div>
+        <div class="tl-dot"></div>
+        <div class="tl-body">
+          <p class="tl-title">Dancing &amp; Dessert</p>
+          <p class="tl-desc">The dance floor opens and cake comes out. We'll be celebrating until midnight.</p>
+        </div>
+      </div>
+
+      <div class="tl-item tl-item--last">
+        <div class="tl-time">midnight</div>
+        <div class="tl-dot"></div>
+        <div class="tl-body">
+          <p class="tl-title">Goodnight!</p>
+          <p class="tl-desc">The evening wraps up. Safe travels home — we love you all!</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ─── Where to Stay ──────────────────────────────────────── -->
+<section id="stay">
+  <div class="section-inner">
+    <p class="section-label">Where to Stay</p>
+    <h2 class="section-title">Places to <em>rest</em></h2>
+    <div class="section-rule" style="background:var(--gold);"></div>
+
+    <p>We've arranged a room block and discount code at a nearby hotel for our guests. Brooklyn has plenty of great options, but this is our top recommendation for convenience.</p>
+
+    <div class="hotel-card">
+      <p class="hotel-name">Pod Brooklyn</p>
+      <p class="hotel-address">247 Metropolitan Ave, Brooklyn, NY 11211</p>
+      <p style="color:rgba(247,243,236,0.75); font-size:0.95rem;">A stylish, design-forward hotel steps from the best of Williamsburg. Modern rooms, a rooftop bar, and easy access to the venue. We've negotiated a group discount — use the code below when booking.</p>
+      <p class="hotel-code">Discount code: <strong>NICKDANIEL26</strong></p>
+    </div>
+
+    <div class="stay-note">
+      <strong style="color:rgba(247,243,236,0.7);">Getting there:</strong> The W Loft is at 240 Kent Ave, Brooklyn, about a 10-minute walk or quick Uber/Lyft from the Pod. If you're coming from Manhattan, the L train to Bedford Av or J/M/Z to Marcy Av are your best bets. Taxis and rideshares are easy to find throughout the evening.
+    </div>
+  </div>
+</section>
+
+<!-- ─── FAQ ────────────────────────────────────────────────── -->
+<section id="faq">
+  <div class="section-inner">
+    <p class="section-label">FAQ</p>
+    <h2 class="section-title">Good to <em>know</em></h2>
+    <div class="section-rule"></div>
+
+    <div class="faq-list" id="faqList">
+
+      <div class="faq-item">
+        <button class="faq-question">
+          What about the registry?
+          <span class="faq-icon"></span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            Your presence is truly the best gift. If you'd like to contribute something, we'd be so touched by a contribution to our honeymoon fund. You can find all the details on the <a href="#fund" style="color:var(--gold);">Registry page</a> — we've set up options for both US and French guests.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          Is there parking at the venue?
+          <span class="faq-icon"></span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            Street parking is available in the neighborhood, though it can be limited on weekend evenings. We'd recommend taking the subway, a taxi, or a rideshare — and given that this is a wedding, we especially encourage not driving home at the end of the night! The L train to Bedford Av and J/M/Z to Marcy Av are the closest subway options.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          Can I bring a date?
+          <span class="faq-icon"></span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            We ask that you stick to your RSVP and only bring a date if you've been prompted for a plus-one. Due to limited space at the venue, we aren't able to accommodate additional guests beyond those on our list.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          What will the food be like?
+          <span class="faq-icon"></span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            We're serving a Peruvian menu from Jora, one of our favorite restaurants, located in Long Island City, Queens. During cocktail hour there will be passed hors d'oeuvres including beef and quinoa empanadas and a veggie platter. Dinner is a buffet featuring ceviche, causa vegetariana, aji de gallina, a vegetarian curry, and salad. In the French tradition, the dinner will be followed by a cheese course from Arethusa Dairy, one of the best cheesemakers in the country, located near where Nick grew up in Connecticut. Save room for dessert — a matcha green tea cake from a lovely Chinese bakery in Flushing, Queens, plus additional sweets to keep us dancing all night. We've done our best to accommodate all dietary needs — if you haven't already communicated your allergies or dietary restrictions, please get in touch as soon as possible!
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          What drinks will be available?
+          <span class="faq-icon"></span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            The bar will be open throughout the evening. We'll have champagne for the toast, New Zealand Sauvignon Blanc, Corsican rosé, and an Argentine Malbec, plus craft beers from Back East Brewery in Connecticut. Our signature cocktail is a Tequila Citrus Punch (tequila, pink grapefruit juice, lime, agave, and a splash of Italicus), with a non-alcoholic Grapefruit &amp; Rosemary Sparkler for those skipping the spirits. Soft drinks and other non-alcoholic options will also be available all night.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          What is the dress code?
+          <span class="faq-icon"></span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            Festive casual — colorful and comfortable. Your best thrifted finds are welcome. The ceremony will be outside on a hot July evening, so breathable fabrics are your friend, and comfortable shoes are encouraged for the dance floor.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          Will the ceremony be indoors or outdoors?
+          <span class="faq-icon"></span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            As long as the weather is in our favor, the ceremony and cocktail hour will be outside on the rooftop overlooking the Manhattan skyline, with dinner and dancing indoors. In case of rain, we will hold the entire event inside.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          Is there a wedding hashtag?
+          <span class="faq-icon"></span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            #NickAndDaniel2026 — We do ask that the ceremony remain unplugged so our photographers can do their thing. Please silence phones and cameras during the ceremony itself. After that, snap away!
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          I'm coming from France — any tips?
+          <span class="faq-icon"></span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            We're so excited to have our French family and friends make the trip! JFK and Newark (EWR) are both solid options into New York. From JFK, the AirTrain + subway is easy and affordable; from EWR, the NJ Transit train into Penn Station is the most convenient. Once in Brooklyn, you'll find everything walkable or a short Uber away. Don't hesitate to reach out — we're happy to help plan your stay.
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /faq-list -->
+  </div>
+</section>
+
+<!-- ─── Honeymoon Fund ─────────────────────────────────────── -->
+<section id="fund">
+  <div class="section-inner">
+    <p class="section-label">Registry</p>
+    <h2 class="section-title">Honeymoon <em>Fund</em></h2>
+    <div class="section-rule"></div>
+
+    <p class="fund-intro">
+      Your presence at our wedding is more than enough. But if you'd like to give us a little something extra, a contribution to our honeymoon fund would mean the world. We'll be heading somewhere wonderful after the celebration — details to come!
+    </p>
+
+    <div class="fund-cards">
+
+      <!-- Venmo — US guests -->
+      <div class="fund-card">
+        <div class="fund-card-flag">🇺🇸</div>
+        <p class="fund-card-label">For US guests</p>
+        <p class="fund-card-platform">Venmo</p>
+        <p class="fund-card-handle">@[your-venmo-handle]</p>
+        <a href="https://venmo.com/[your-venmo-handle]" class="fund-card-btn" target="_blank" rel="noopener">Contribute via Venmo</a>
+      </div>
+
+      <!-- PayPal — all guests -->
+      <div class="fund-card">
+        <div class="fund-card-flag">🌍</div>
+        <p class="fund-card-label">For all guests</p>
+        <p class="fund-card-platform">PayPal</p>
+        <p class="fund-card-handle">paypal.me/[your-handle]</p>
+        <a href="https://paypal.me/[your-handle]" class="fund-card-btn" target="_blank" rel="noopener">Contribute via PayPal</a>
+      </div>
+
+      <!-- Lydia — French guests -->
+      <div class="fund-card">
+        <div class="fund-card-flag">🇫🇷</div>
+        <p class="fund-card-label">For French guests</p>
+        <p class="fund-card-platform">Lydia</p>
+        <p class="fund-card-handle">@[your-lydia-handle]</p>
+        <a href="https://lydia-app.com/pay?to=[your-lydia-handle]" class="fund-card-btn" target="_blank" rel="noopener">Contribute via Lydia</a>
+      </div>
+
+    </div>
+
+    <p class="fund-also">
+      We'll also have a table for contributions at the wedding itself — so please don't worry if you prefer to give in person. ❤️
+    </p>
+  </div>
+</section>
+
+<!-- ─── Footer ─────────────────────────────────────────────── -->
+<footer>
+  <p class="footer-names">Nick &amp; Daniel</p>
+  <p>Friday, July 10, 2026 &nbsp;·&nbsp; The W Loft, Brooklyn, New York</p>
+  <p style="margin-top:0.5rem;">Made with love in Paris &nbsp;🗼</p>
+</footer>
+
+<!-- ─── Scripts ────────────────────────────────────────────── -->
+<script>
+  // Mobile nav toggle
+  const toggle = document.getElementById('navToggle');
+  const links  = document.getElementById('navLinks');
+  toggle.addEventListener('click', () => links.classList.toggle('open'));
+  links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links.classList.remove('open')));
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-question').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.parentElement;
+      const wasOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
+      if (!wasOpen) item.classList.add('open');
+    });
+  });
+</script>
+
+</body>
+</html>

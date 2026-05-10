@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wedding Weekend — Nick & Daniel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --sage:   #8a9e7a;
+      --navy:   #1c2b4a;
+      --gold:   #b8985a;
+      --gold-lt:#d4b87a;
+      --cream:  #f7f3ec;
+      --white:  #ffffff;
+      --text:   #2e2e2e;
+      --muted:  #6b6b6b;
+      --border: #ddd6c8;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Jost', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      font-weight: 300;
+      line-height: 1.75;
+    }
+    a { color: inherit; text-decoration: none; }
+    p { margin-bottom: 1.1rem; }
+    p:last-child { margin-bottom: 0; }
+
+    /* ─── Navigation ─────────────────────────────────────────── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(28, 43, 74, 0.97);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(184,152,90,0.3);
+    }
+    .nav-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 2rem; height: 64px;
+    }
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem; font-style: italic;
+      color: var(--gold-lt); letter-spacing: 0.04em;
+    }
+    .nav-back {
+      font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase;
+      color: rgba(247,243,236,0.7); display: flex; align-items: center; gap: 0.5rem;
+      transition: color 0.2s;
+    }
+    .nav-back:hover { color: var(--gold-lt); }
+    .nav-back svg { width: 12px; }
+
+    /* ─── Hero ───────────────────────────────────────────────── */
+    .page-hero {
+      background: var(--navy); text-align: center;
+      padding: 10rem 2rem 5rem;
+      position: relative; overflow: hidden;
+    }
+    .page-hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 60% 50% at 50% 30%, rgba(184,152,90,0.12) 0%, transparent 70%);
+    }
+    .page-hero-content { position: relative; z-index: 1; }
+    .page-hero-eyebrow {
+      font-size: 0.68rem; letter-spacing: 0.28em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 1rem;
+    }
+    .page-hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.5rem, 7vw, 5rem);
+      font-weight: 300; font-style: italic;
+      color: var(--cream); line-height: 1.1; margin-bottom: 1rem;
+    }
+    .page-hero-title em { color: var(--gold); }
+    .page-hero-divider {
+      width: 44px; height: 1px; background: var(--gold);
+      margin: 1.5rem auto;
+    }
+    .page-hero-sub {
+      font-size: 0.88rem; color: rgba(247,243,236,0.6);
+      max-width: 480px; margin: 0 auto;
+    }
+
+    /* ─── Day Sections ───────────────────────────────────────── */
+    .day-section { padding: 5rem 2rem; }
+    .day-section:nth-child(even) { background: var(--white); }
+    .day-section:nth-child(odd)  { background: var(--cream); }
+    .section-inner { max-width: 800px; margin: 0 auto; }
+
+    .day-label::before { content: '✿'; font-size: 0.55rem; margin-right: 0.5rem; color: #8a9e7a; opacity: 0.8; vertical-align: middle; }
+    .day-label {
+      font-size: 0.65rem; letter-spacing: 0.28em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 0.5rem;
+    }
+    .day-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      color: var(--navy); line-height: 1.15; margin-bottom: 0.4rem;
+    }
+    .day-title em { color: var(--gold); font-style: italic; }
+    .day-rule {
+      width: 44px; height: 1px; background: var(--gold);
+      margin: 1.2rem 0 2.5rem;
+    }
+
+    /* ─── Event Cards ────────────────────────────────────────── */
+    .event-list { display: flex; flex-direction: column; gap: 1.5rem; }
+    .event-card {
+      display: grid;
+      grid-template-columns: 90px 1fr;
+      gap: 0 2rem;
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      padding: 1.75rem;
+      background: var(--white);
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .day-section:nth-child(even) .event-card { background: var(--cream); }
+    .event-card:hover { border-color: var(--gold); box-shadow: 0 4px 20px rgba(184,152,90,0.1); }
+    .event-time {
+      font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--gold); padding-top: 0.3rem; line-height: 1.5;
+      border-right: 1px solid var(--border);
+      padding-right: 2rem;
+    }
+    .event-body { padding-left: 0; }
+    .event-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.35rem; color: var(--navy); margin-bottom: 0.15rem;
+    }
+    .event-location {
+      font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 0.6rem;
+    }
+    .event-note { font-size: 0.9rem; color: var(--muted); line-height: 1.7; }
+    .event-link {
+      display: inline-block; margin-top: 0.75rem;
+      font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--gold); border-bottom: 1px solid rgba(184,152,90,0.4);
+      padding-bottom: 1px; transition: border-color 0.2s;
+    }
+    .event-link:hover { border-color: var(--gold); }
+
+    .day-note {
+      margin-top: 2rem; padding: 1.25rem 1.5rem;
+      border-left: 2px solid rgba(184,152,90,0.5);
+      font-size: 0.88rem; color: var(--muted);
+    }
+
+    /* ─── Footer ─────────────────────────────────────────────── */
+    footer {
+      background: var(--navy); color: rgba(247,243,236,0.45);
+      text-align: center; padding: 3rem 2rem;
+      font-size: 0.72rem; letter-spacing: 0.12em;
+    }
+    .footer-names {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem; font-style: italic;
+      color: var(--gold-lt); margin-bottom: 0.75rem;
+    }
+    .footer-back {
+      display: inline-block; margin-top: 1rem;
+      font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--gold); border: 1px solid rgba(184,152,90,0.4);
+      padding: 0.5rem 1.2rem; border-radius: 2px;
+      transition: border-color 0.2s;
+    }
+    .footer-back:hover { border-color: var(--gold); }
+
+    @media (max-width: 500px) {
+      .event-card { grid-template-columns: 1fr; gap: 0.5rem; }
+      .event-time { border-right: none; padding-right: 0; border-bottom: 1px solid var(--border); padding-bottom: 0.75rem; margin-bottom: 0.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ─── Navigation ─────────────────────────────────────────── -->
+<nav>
+  <div class="nav-inner">
+    <a href="wedding.html" class="nav-logo">Nick &amp; Daniel</a>
+    <a href="wedding.html" class="nav-back">
+      <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 1L3 6l5 5"/></svg>
+      Back to wedding site
+    </a>
+  </div>
+</nav>
+
+<!-- ─── Hero ──────────────────────────────────────────────── -->
+<div class="page-hero">
+  <div class="page-hero-content">
+    <p class="page-hero-eyebrow">July 10–12, 2026</p>
+    <h1 class="page-hero-title">The Wedding <em>Weekend</em></h1>
+    <div class="page-hero-divider"></div>
+    <p class="page-hero-sub">The celebration doesn't stop at the wedding — join us for a full weekend of food, drinks, and fun.</p>
+  </div>
+</div>
+
+<!-- ─── Thursday ─────────────────────────────────────────── -->
+<section class="day-section" id="thursday">
+  <div class="section-inner">
+    <p class="day-label">Thursday, July 9th</p>
+    <h2 class="day-title">Welcome to <em>Brooklyn</em></h2>
+    <div class="day-rule"></div>
+
+    <div class="event-list">
+
+      <div class="event-card">
+        <div class="event-time">Evening</div>
+        <div class="event-body">
+          <p class="event-name">Picnic in Prospect Park</p>
+          <p class="event-location">Prospect Park, Brooklyn</p>
+          <p class="event-note">Kick off the wedding weekend with a casual picnic in one of Brooklyn's most beloved spots. Bring a blanket, good company, and an appetite — we'll have snacks and drinks to share as we settle into the summer evening together.</p>
+          <a href="https://www.prospectpark.org/" class="event-link" target="_blank" rel="noopener">Prospect Park →</a>
+        </div>
+      </div>
+
+      <div class="event-card">
+        <div class="event-time">After</div>
+        <div class="event-body">
+          <p class="event-name">Drinks at a local bar</p>
+          <p class="event-location">Brooklyn</p>
+          <p class="event-note">Keep the night going with drinks at a neighborhood bar nearby. Details to come — follow our lead!</p>
+        </div>
+      </div>
+
+    </div>
+
+    <p class="day-note">Thursday events are casual and drop-in — come when you can, stay as long as you like. A great chance to meet fellow guests before the big day.</p>
+  </div>
+</section>
+
+<!-- ─── Friday ──────────────────────────────────────────────── -->
+<section class="day-section" id="friday">
+  <div class="section-inner">
+    <p class="day-label">Friday, July 10th</p>
+    <h2 class="day-title">The Big <em>Day</em></h2>
+    <div class="day-rule"></div>
+
+    <div class="event-list">
+
+      <div class="event-card">
+        <div class="event-time">5:30 pm</div>
+        <div class="event-body">
+          <p class="event-name">The Wedding of Nick &amp; Daniel</p>
+          <p class="event-location">The W Loft &nbsp;·&nbsp; 240 Kent Ave, Brooklyn, NY 11211</p>
+          <p class="event-note">Ceremony, cocktail hour, dinner, and dancing until midnight. All the details are on the <a href="wedding.html" style="color:var(--gold);">main wedding page</a>.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ─── Saturday ─────────────────────────────────────────── -->
+<section class="day-section" id="saturday">
+  <div class="section-inner">
+    <p class="day-label">Saturday, July 11th</p>
+    <h2 class="day-title">Daniel's <em>Birthday</em></h2>
+    <div class="day-rule"></div>
+
+    <div class="event-list">
+
+      <div class="event-card">
+        <div class="event-time">11:00 am</div>
+        <div class="event-body">
+          <p class="event-name">Brunch at Radegast Hall &amp; Biergarten</p>
+          <p class="event-location">113 N 3rd St, Brooklyn, NY 11249</p>
+          <p class="event-note">A beloved Williamsburg institution — a sprawling German beer hall with great food, cold brews, and a lively atmosphere. The perfect post-wedding morning-after gathering to recap the night before.</p>
+          <a href="https://www.radegasthall.com/" class="event-link" target="_blank" rel="noopener">Radegast Hall →</a>
+        </div>
+      </div>
+
+      <div class="event-card">
+        <div class="event-time">7:00 – 11:00 pm</div>
+        <div class="event-body">
+          <p class="event-name">Daniel's Birthday — Rooftop in Gowanus</p>
+          <p class="event-location">Gowanus, Brooklyn</p>
+          <p class="event-note">The wedding weekend closes out with a rooftop birthday celebration for Daniel. More details to come — but plan on an evening with great views, great people, and more reasons to celebrate.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <p class="day-note">Saturday events are open to all wedding guests — the more the merrier. No RSVP needed for brunch; details on the evening party to follow.</p>
+  </div>
+</section>
+
+<!-- ─── Footer ───────────────────────────────────────────── -->
+<footer>
+  <p class="footer-names">Nick &amp; Daniel</p>
+  <p>Friday, July 10, 2026 &nbsp;·&nbsp; The W Loft, Brooklyn, New York</p>
+  <a href="wedding.html" class="footer-back">← Back to wedding site</a>
+</footer>
+
+</body>
+</html>

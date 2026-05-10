@@ -1,0 +1,10 @@
+{
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "routes": [
+    { "src": "/", "dest": "/wedding.html" },
+    { "src": "/fr", "dest": "/wedding-fr.html" },
+    { "src": "/weekend", "dest": "/wedding-weekend.html" },
+    { "src": "/nyc", "dest": "/nyc-guide.html" }
+  ]
+}
