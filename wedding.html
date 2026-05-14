@@ -465,6 +465,33 @@
       max-width: 500px; margin: 0 auto;
     }
 
+    /* ─── Fund accordion ─────────────────────────────────────── */
+    .fund-toggle-btn {
+      max-width: 480px; width: 100%; margin: 0 auto;
+      background: none; border: 1px solid var(--border); border-radius: 2px;
+      cursor: pointer; padding: 1.1rem 1.5rem;
+      display: flex; justify-content: space-between; align-items: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem; color: var(--navy);
+      transition: border-color 0.2s;
+    }
+    .fund-toggle-btn:hover { border-color: var(--gold); }
+    .fund-toggle-icon {
+      flex-shrink: 0; width: 18px; height: 18px;
+      position: relative; color: var(--gold);
+    }
+    .fund-toggle-icon::before, .fund-toggle-icon::after {
+      content: ''; position: absolute; background: currentColor; border-radius: 1px;
+    }
+    .fund-toggle-icon::before { width: 10px; height: 1.5px; top: 50%; left: 50%; transform: translate(-50%,-50%); }
+    .fund-toggle-icon::after  { width: 1.5px; height: 10px; top: 50%; left: 50%; transform: translate(-50%,-50%); transition: opacity 0.3s; }
+    .fund-toggle-btn.open .fund-toggle-icon::after { opacity: 0; }
+    .fund-collapse {
+      max-height: 0; overflow: hidden;
+      transition: max-height 0.5s ease;
+    }
+    .fund-collapse.open { max-height: 1000px; padding-top: 2rem; }
+
     /* ─── Footer ─────────────────────────────────────────────── */
     footer {
       background: var(--navy); color: rgba(247,243,236,0.45);
@@ -483,6 +510,7 @@
       .nav-links { display: none; flex-direction: column; position: absolute; top: 64px; left: 0; right: 0; background: var(--navy); padding: 1.5rem 2rem; gap: 1.5rem; border-bottom: 1px solid rgba(184,152,90,0.2); }
       .nav-links.open { display: flex; }
       .nav-toggle { display: block; }
+      .nav-lang { display: flex; }
       .story-grid { grid-template-columns: 1fr; gap: 2rem; }
       .fund-cards { flex-direction: column; align-items: center; }
       .fund-card { max-width: 100%; width: 100%; }
@@ -864,9 +892,14 @@
     <div class="section-rule"></div>
 
     <p class="fund-intro">
-      Your presence at our wedding is more than enough. But if you'd like to give us a little something extra, a contribution to our honeymoon fund would mean the world. We'll be heading somewhere wonderful after the celebration — details to come!
+      We'll have a table with a card box for contributions at the wedding itself — but if you'd like to gift digitally, here is our info. ❤️
     </p>
 
+    <button class="fund-toggle-btn" id="fundToggle">
+      Digital payment options
+      <span class="fund-toggle-icon"></span>
+    </button>
+    <div class="fund-collapse" id="fundCollapse">
     <div class="fund-cards">
 
       <!-- Venmo — US guests -->
@@ -874,8 +907,8 @@
         <div class="fund-card-flag">🇺🇸</div>
         <p class="fund-card-label">For US guests</p>
         <p class="fund-card-platform">Venmo</p>
-        <p class="fund-card-handle">@[your-venmo-handle]</p>
-        <a href="https://venmo.com/[your-venmo-handle]" class="fund-card-btn" target="_blank" rel="noopener">Contribute via Venmo</a>
+        <p class="fund-card-handle">@nickct</p>
+        <a href="https://venmo.com/nickct" class="fund-card-btn" target="_blank" rel="noopener">Contribute via Venmo</a>
       </div>
 
       <!-- PayPal — all guests -->
@@ -883,24 +916,23 @@
         <div class="fund-card-flag">🌍</div>
         <p class="fund-card-label">For all guests</p>
         <p class="fund-card-platform">PayPal</p>
-        <p class="fund-card-handle">paypal.me/[your-handle]</p>
-        <a href="https://paypal.me/[your-handle]" class="fund-card-btn" target="_blank" rel="noopener">Contribute via PayPal</a>
+        <p class="fund-card-handle">nicholas.tyson@gmail.com</p>
+        <a href="https://paypal.me/nicholastyson1" class="fund-card-btn" target="_blank" rel="noopener">Contribute via PayPal</a>
       </div>
 
-      <!-- Lydia — French guests -->
+      <!-- Wero / Lydia — French guests -->
       <div class="fund-card">
         <div class="fund-card-flag">🇫🇷</div>
         <p class="fund-card-label">For French guests</p>
-        <p class="fund-card-platform">Lydia</p>
-        <p class="fund-card-handle">@[your-lydia-handle]</p>
-        <a href="https://lydia-app.com/pay?to=[your-lydia-handle]" class="fund-card-btn" target="_blank" rel="noopener">Contribute via Lydia</a>
+        <p class="fund-card-platform">Wero / Lydia</p>
+        <p class="fund-card-handle">+33 (0)6 85 13 11 91</p>
+        <p style="font-size:0.78rem; color:var(--muted); margin-top:0.3rem; margin-bottom:0;">Put "mariage" in the description</p>
+        <a href="https://wero-app.com" class="fund-card-btn" target="_blank" rel="noopener">Contribute via Wero / Lydia</a>
       </div>
 
     </div>
+    </div><!-- /fund-collapse -->
 
-    <p class="fund-also">
-      We'll also have a table for contributions at the wedding itself — so please don't worry if you prefer to give in person. ❤️
-    </p>
   </div>
 </section>
 
@@ -940,6 +972,16 @@
   const links  = document.getElementById('navLinks');
   toggle.addEventListener('click', () => links.classList.toggle('open'));
   links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links.classList.remove('open')));
+
+  // Fund accordion toggle
+  const fundToggle = document.getElementById('fundToggle');
+  const fundCollapse = document.getElementById('fundCollapse');
+  if (fundToggle && fundCollapse) {
+    fundToggle.addEventListener('click', () => {
+      fundToggle.classList.toggle('open');
+      fundCollapse.classList.toggle('open');
+    });
+  }
 
   // FAQ accordion
   document.querySelectorAll('.faq-question').forEach(btn => {

@@ -76,11 +76,11 @@
     .nav-links a:hover { color: var(--gold-lt); }
 
     /* language toggle */
+    .nav-right { display: flex; align-items: center; gap: 0.75rem; }
     .nav-lang {
       font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase;
       color: rgba(247,243,236,0.5);
       display: flex; align-items: center; gap: 0.35rem;
-      margin-left: 2rem;
       white-space: nowrap;
     }
     .nav-lang a {
@@ -341,7 +341,7 @@
       font-size: 0.95rem; color: var(--muted); line-height: 1.8;
     }
     .faq-answer-inner { padding-bottom: 1.3rem; }
-    .faq-item.open .faq-answer { max-height: 500px; }
+    .faq-item.open .faq-answer { max-height: 1000px; }
 
     /* ─── Honeymoon Fund ─────────────────────────────────────── */
     #fund { background: var(--white); text-align: center; }
@@ -389,6 +389,33 @@
       max-width: 500px; margin: 0 auto;
     }
 
+    /* ─── Fund accordion ─────────────────────────────────────── */
+    .fund-toggle-btn {
+      max-width: 480px; width: 100%; margin: 0 auto;
+      background: none; border: 1px solid var(--border); border-radius: 2px;
+      cursor: pointer; padding: 1.1rem 1.5rem;
+      display: flex; justify-content: space-between; align-items: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem; color: var(--navy);
+      transition: border-color 0.2s;
+    }
+    .fund-toggle-btn:hover { border-color: var(--gold); }
+    .fund-toggle-icon {
+      flex-shrink: 0; width: 18px; height: 18px;
+      position: relative; color: var(--gold);
+    }
+    .fund-toggle-icon::before, .fund-toggle-icon::after {
+      content: ''; position: absolute; background: currentColor; border-radius: 1px;
+    }
+    .fund-toggle-icon::before { width: 10px; height: 1.5px; top: 50%; left: 50%; transform: translate(-50%,-50%); }
+    .fund-toggle-icon::after  { width: 1.5px; height: 10px; top: 50%; left: 50%; transform: translate(-50%,-50%); transition: opacity 0.3s; }
+    .fund-toggle-btn.open .fund-toggle-icon::after { opacity: 0; }
+    .fund-collapse {
+      max-height: 0; overflow: hidden;
+      transition: max-height 0.5s ease;
+    }
+    .fund-collapse.open { max-height: 1000px; padding-top: 2rem; }
+
     /* ─── Footer ─────────────────────────────────────────────── */
     footer {
       background: var(--navy); color: rgba(247,243,236,0.45);
@@ -407,10 +434,10 @@
       .nav-links { display: none; flex-direction: column; position: absolute; top: 64px; left: 0; right: 0; background: var(--navy); padding: 1.5rem 2rem; gap: 1.5rem; border-bottom: 1px solid rgba(184,152,90,0.2); }
       .nav-links.open { display: flex; }
       .nav-toggle { display: block; }
+      .nav-lang { display: flex; }
       .story-grid { grid-template-columns: 1fr; gap: 2rem; }
       .fund-cards { flex-direction: column; align-items: center; }
       .fund-card { max-width: 100%; width: 100%; }
-      .nav-lang { display: none; }
     }
   </style>
 </head>
@@ -429,14 +456,16 @@
       <li><a href="#fund">Liste de mariage</a></li>
       <li><a href="nyc-guide.html">Guide NYC</a></li>
     </ul>
-    <span class="nav-lang">
-      <a href="wedding.html">EN</a>
-      <span style="color:rgba(247,243,236,0.25);">·</span>
-      <span class="active">FR</span>
-    </span>
-    <button class="nav-toggle" id="navToggle" aria-label="Menu">
-      <span></span><span></span><span></span>
-    </button>
+    <div class="nav-right">
+      <span class="nav-lang">
+        <a href="wedding.html">EN</a>
+        <span style="color:rgba(247,243,236,0.25);">·</span>
+        <span class="active">FR</span>
+      </span>
+      <button class="nav-toggle" id="navToggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
   </div>
 </nav>
 
@@ -503,7 +532,7 @@
       <path d="M 0,73 Q 120,70 240,73 Q 360,76 480,73" stroke="rgba(184,152,90,0.45)" stroke-width="1" fill="none"/>
       <rect x="0" y="73" width="480" height="9" fill="rgba(184,152,90,0.04)" stroke="none"/>
     </svg>
-    <p class="hero-date">Vendredi 10 juillet 2026 &nbsp;·&nbsp; 17h30 EDT</p>
+    <p class="hero-date">Vendredi 10 juillet 2026 &nbsp;·&nbsp; Portes 17h00 &nbsp;·&nbsp; Cérémonie 17h30 EDT</p>
     <p class="hero-venue">The W Loft</p>
     <p class="hero-location">240 Kent Ave &nbsp;·&nbsp; Brooklyn, New York</p>
   </div>
@@ -748,7 +777,7 @@
         </button>
         <div class="faq-answer">
           <div class="faq-answer-inner">
-            On est tellement contents que vous fassiez le voyage ! JFK et Newark (EWR) sont tous les deux de bons choix pour rejoindre New York. Depuis JFK, l'AirTrain + le métro est pratique et économique ; depuis EWR, le train NJ Transit jusqu'à Penn Station est l'option la plus commode. Une fois à Brooklyn, tout est accessible à pied ou en quelques minutes d'Uber. N'hésitez pas à nous écrire — nous serons ravis de vous aider à organiser votre séjour.
+            On est tellement contents que vous fassiez le voyage ! JFK et Newark (EWR) sont tous les deux de bons choix pour rejoindre New York. Depuis JFK, l'AirTrain + le métro est pratique et économique ; depuis EWR, le train NJ Transit jusqu'à Penn Station est l'option la plus commode. Une fois à Brooklyn, tout est accessible à pied ou en quelques minutes d'Uber. N'hésitez pas à nous écrire — nous serons ravis de vous aider à organiser votre séjour. À noter également : les ressortissants français voyageant aux États-Unis doivent s'inscrire à l'ESTA (autorisation électronique de voyage) avant de prendre l'avion — ça prend environ 5 minutes sur <a href="https://esta.cbp.dhs.gov" style="color:var(--gold);" target="_blank" rel="noopener">esta.cbp.dhs.gov</a>. À ne pas oublier !
           </div>
         </div>
       </div>
@@ -765,9 +794,14 @@
     <div class="section-rule"></div>
 
     <p class="fund-intro">
-      Votre présence à notre mariage nous suffit amplement. Mais si vous souhaitez nous offrir un petit quelque chose en plus, une contribution à notre fonds lune de miel nous toucherait énormément. Nous partirons quelque part de merveilleux après la fête — les détails arrivent bientôt !
+      Nous aurons une table avec une boîte à cartes pour les contributions au mariage — mais si vous souhaitez offrir un cadeau digital, voici nos coordonnées. ❤️
     </p>
 
+    <button class="fund-toggle-btn" id="fundToggle">
+      Options de paiement digital
+      <span class="fund-toggle-icon"></span>
+    </button>
+    <div class="fund-collapse" id="fundCollapse">
     <div class="fund-cards">
 
       <!-- Venmo — invités américains -->
@@ -775,8 +809,8 @@
         <div class="fund-card-flag">🇺🇸</div>
         <p class="fund-card-label">Pour les invités américains</p>
         <p class="fund-card-platform">Venmo</p>
-        <p class="fund-card-handle">@[your-venmo-handle]</p>
-        <a href="https://venmo.com/[your-venmo-handle]" class="fund-card-btn" target="_blank" rel="noopener">Contribuer via Venmo</a>
+        <p class="fund-card-handle">@nickct</p>
+        <a href="https://venmo.com/nickct" class="fund-card-btn" target="_blank" rel="noopener">Contribuer via Venmo</a>
       </div>
 
       <!-- PayPal — tous les invités -->
@@ -784,24 +818,23 @@
         <div class="fund-card-flag">🌍</div>
         <p class="fund-card-label">Pour tous les invités</p>
         <p class="fund-card-platform">PayPal</p>
-        <p class="fund-card-handle">paypal.me/[your-handle]</p>
-        <a href="https://paypal.me/[your-handle]" class="fund-card-btn" target="_blank" rel="noopener">Contribuer via PayPal</a>
+        <p class="fund-card-handle">nicholas.tyson@gmail.com</p>
+        <a href="https://paypal.me/nicholastyson1" class="fund-card-btn" target="_blank" rel="noopener">Contribuer via PayPal</a>
       </div>
 
-      <!-- Lydia — invités français -->
+      <!-- Wero / Lydia — invités français -->
       <div class="fund-card">
         <div class="fund-card-flag">🇫🇷</div>
         <p class="fund-card-label">Pour les invités français</p>
-        <p class="fund-card-platform">Lydia</p>
-        <p class="fund-card-handle">@[your-lydia-handle]</p>
-        <a href="https://lydia-app.com/pay?to=[your-lydia-handle]" class="fund-card-btn" target="_blank" rel="noopener">Contribuer via Lydia</a>
+        <p class="fund-card-platform">Wero / Lydia</p>
+        <p class="fund-card-handle">+33 (0)6 85 13 11 91</p>
+        <p style="font-size:0.78rem; color:var(--muted); margin-top:0.3rem; margin-bottom:0;">Indiquer « mariage » dans la description</p>
+        <a href="https://wero-app.com" class="fund-card-btn" target="_blank" rel="noopener">Contribuer via Wero / Lydia</a>
       </div>
 
     </div>
+    </div><!-- /fund-collapse -->
 
-    <p class="fund-also">
-      Nous aurons également une table pour les enveloppes au mariage — ne vous inquiétez pas si vous préférez donner en personne. ❤️
-    </p>
   </div>
 </section>
 
@@ -819,6 +852,16 @@
   const links  = document.getElementById('navLinks');
   toggle.addEventListener('click', () => links.classList.toggle('open'));
   links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links.classList.remove('open')));
+
+  // Fund accordion toggle
+  const fundToggle = document.getElementById('fundToggle');
+  const fundCollapse = document.getElementById('fundCollapse');
+  if (fundToggle && fundCollapse) {
+    fundToggle.addEventListener('click', () => {
+      fundToggle.classList.toggle('open');
+      fundCollapse.classList.toggle('open');
+    });
+  }
 
   // FAQ accordion
   document.querySelectorAll('.faq-question').forEach(btn => {
