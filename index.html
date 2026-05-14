@@ -77,11 +77,11 @@
     .nav-links a:hover { color: var(--gold-lt); }
 
     /* language toggle */
+    .nav-right { display: flex; align-items: center; gap: 0.75rem; }
     .nav-lang {
       font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase;
       color: rgba(247,243,236,0.5);
       display: flex; align-items: center; gap: 0.35rem;
-      margin-left: 2rem;
       white-space: nowrap;
     }
     .nav-lang a {
@@ -417,7 +417,7 @@
       font-size: 0.95rem; color: var(--muted); line-height: 1.8;
     }
     .faq-answer-inner { padding-bottom: 1.3rem; }
-    .faq-item.open .faq-answer { max-height: 400px; }
+    .faq-item.open .faq-answer { max-height: 1000px; }
 
     /* ─── Honeymoon Fund ─────────────────────────────────────── */
     #fund { background: var(--white); text-align: center; }
@@ -483,7 +483,6 @@
       .nav-links { display: none; flex-direction: column; position: absolute; top: 64px; left: 0; right: 0; background: var(--navy); padding: 1.5rem 2rem; gap: 1.5rem; border-bottom: 1px solid rgba(184,152,90,0.2); }
       .nav-links.open { display: flex; }
       .nav-toggle { display: block; }
-      .nav-lang { display: none; }
       .story-grid { grid-template-columns: 1fr; gap: 2rem; }
       .fund-cards { flex-direction: column; align-items: center; }
       .fund-card { max-width: 100%; width: 100%; }
@@ -504,14 +503,16 @@
       <li><a href="#stay">Where to Stay</a></li>
       <li><a href="nyc-guide.html">NYC Guide</a></li>
     </ul>
-    <span class="nav-lang">
-      <span class="active">EN</span>
-      <span style="color:rgba(247,243,236,0.25);">·</span>
-      <a href="wedding-fr.html">FR</a>
-    </span>
-    <button class="nav-toggle" id="navToggle" aria-label="Menu">
-      <span></span><span></span><span></span>
-    </button>
+    <div class="nav-right">
+      <span class="nav-lang">
+        <span class="active">EN</span>
+        <span style="color:rgba(247,243,236,0.25);">·</span>
+        <a href="wedding-fr.html">FR</a>
+      </span>
+      <button class="nav-toggle" id="navToggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
   </div>
 </nav>
 
@@ -578,7 +579,7 @@
       <path d="M 0,73 Q 120,70 240,73 Q 360,76 480,73" stroke="rgba(184,152,90,0.45)" stroke-width="1" fill="none"/>
       <rect x="0" y="73" width="480" height="9" fill="rgba(184,152,90,0.04)" stroke="none"/>
     </svg>
-    <p class="hero-date">Friday, July 10, 2026 &nbsp;·&nbsp; 5:30 PM EDT</p>
+    <p class="hero-date">Friday, July 10, 2026 &nbsp;·&nbsp; Doors 5:00 pm &nbsp;·&nbsp; Ceremony 5:30 pm EDT</p>
     <p class="hero-venue">The W Loft</p>
     <p class="hero-location">240 Kent Ave &nbsp;·&nbsp; Brooklyn, New York</p>
   </div>
@@ -846,7 +847,7 @@
         </button>
         <div class="faq-answer">
           <div class="faq-answer-inner">
-            We're so excited to have our French family and friends make the trip! JFK and Newark (EWR) are both solid options into New York. From JFK, the AirTrain + subway is easy and affordable; from EWR, the NJ Transit train into Penn Station is the most convenient. Once in Brooklyn, you'll find everything walkable or a short Uber away. Don't hesitate to reach out — we're happy to help plan your stay.
+            We're so excited to have our French family and friends make the trip! JFK and Newark (EWR) are both solid options into New York. From JFK, the AirTrain + subway is easy and affordable; from EWR, the NJ Transit train into Penn Station is the most convenient. Once in Brooklyn, you'll find everything walkable or a short Uber away. Don't hesitate to reach out — we're happy to help plan your stay. One thing to note: French passport holders need to register for an ESTA (Electronic System for Travel Authorization) before flying to the US — it takes about 5 minutes at <a href="https://esta.cbp.dhs.gov" style="color:var(--gold);" target="_blank" rel="noopener">esta.cbp.dhs.gov</a>.
           </div>
         </div>
       </div>
