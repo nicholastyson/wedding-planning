@@ -663,14 +663,13 @@
     </div>
 
     <!-- Weekend Collapsible -->
-    <div class="weekend-toggle" id="weekendToggle">
-      <button class="weekend-toggle-btn" aria-expanded="false">
+    <div class="weekend-toggle open" id="weekendToggle">
+      <div class="weekend-toggle-btn" style="cursor:default; pointer-events:none;">
         <div class="weekend-toggle-header">
           <span class="weekend-toggle-label">July 9–11, 2026</span>
           <span class="weekend-toggle-title">The Wedding Weekend</span>
         </div>
-        <span class="weekend-toggle-icon"></span>
-      </button>
+      </div>
       <div class="weekend-content">
         <div class="weekend-content-inner">
 
@@ -717,18 +716,6 @@
     <div class="section-rule"></div>
 
     <div class="faq-list" id="faqList">
-
-      <div class="faq-item">
-        <button class="faq-question">
-          What about the registry?
-          <span class="faq-icon"></span>
-        </button>
-        <div class="faq-answer">
-          <div class="faq-answer-inner">
-            Your presence is truly the best gift. If you'd like to contribute something, we'd be so touched by a contribution to our honeymoon fund. You can find all the details on the <a href="#fund" style="color:var(--gold);">Registry page</a> — we've set up options for both US and French guests.
-          </div>
-        </div>
-      </div>
 
       <div class="faq-item">
         <button class="faq-question">
@@ -804,12 +791,12 @@
 
       <div class="faq-item">
         <button class="faq-question">
-          Is there a wedding hashtag?
+          What about photos from the wedding?
           <span class="faq-icon"></span>
         </button>
         <div class="faq-answer">
           <div class="faq-answer-inner">
-            #NickAndDaniel2026 — We do ask that the ceremony remain unplugged so our photographers can do their thing. Please silence phones and cameras during the ceremony itself. After that, snap away!
+            We do ask that the ceremony remain unplugged so our photographers can do their thing. Please silence phones and cameras during the ceremony itself. After that, snap away! After the wedding, feel free to text, email, or <a href="https://photos.app.goo.gl/6DND2W8U2QsoDmJS8" style="color:var(--gold);" target="_blank" rel="noopener">upload</a> any photos you'd like to share with us — all shared photos will be available in our <a href="https://photos.app.goo.gl/6DND2W8U2QsoDmJS8" style="color:var(--gold);" target="_blank" rel="noopener">shared album</a> as well. Our hashtag is #NickAndDaniel2026 if you do want to share photos on social media.
           </div>
         </div>
       </div>
@@ -826,6 +813,18 @@
         </div>
       </div>
 
+      <div class="faq-item">
+        <button class="faq-question">
+          What about the registry?
+          <span class="faq-icon"></span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            Your presence is truly the best gift. If you'd like to contribute something, we'd be so touched by a contribution to our honeymoon fund. You can find all the details on the <a href="#fund" style="color:var(--gold);">Registry page</a> — we've set up options for both US and French guests.
+          </div>
+        </div>
+      </div>
+
     </div><!-- /faq-list -->
   </div>
 </section>
@@ -838,7 +837,7 @@
     <div class="section-rule"></div>
 
     <p class="fund-intro">
-      Your presence at our wedding is more than enough. But if you'd like to give us a little something extra, a contribution to our honeymoon fund would mean the world. We'll be heading somewhere wonderful after the celebration — details to come!
+      Your presence at our wedding is more than enough. But if you'd like to give us a little something extra, a contribution to our honeymoon fund would mean the world. We're planning on bikepacking across Sicily this fall for our honeymoon!
     </p>
 
     <p class="fund-intro" style="margin-bottom: 2rem;">
@@ -846,7 +845,7 @@
     </p>
 
     <button class="fund-toggle-btn" id="fundToggle">
-      Digital payment options
+      Digital gift options
       <span class="fund-toggle-icon"></span>
     </button>
     <div class="fund-collapse" id="fundCollapse">
@@ -941,14 +940,6 @@
       document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
       if (!wasOpen) item.classList.add('open');
     });
-  });
-
-  // Weekend toggle
-  const weekendToggle = document.getElementById('weekendToggle');
-  const weekendBtn = weekendToggle.querySelector('.weekend-toggle-btn');
-  weekendBtn.addEventListener('click', () => {
-    const isOpen = weekendToggle.classList.toggle('open');
-    weekendBtn.setAttribute('aria-expanded', isOpen);
   });
 </script>
 
