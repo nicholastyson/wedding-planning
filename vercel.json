@@ -2,10 +2,10 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "rewrites": [
-    { "source": "/", "destination": "/wedding.html" },
-    { "source": "/fr", "destination": "/wedding-fr.html" },
-    { "source": "/weekend", "destination": "/wedding-weekend.html" },
-    { "source": "/nyc", "destination": "/nyc-guide.html" },
-    { "source": "/nyc-fr", "destination": "/nyc-guide-fr.html" }
+    { "source": "/", "destination": "/wedding" },
+    { "source": "/fr", "destination": "/wedding-fr" },
+    { "source": "/weekend", "destination": "/wedding-weekend" },
+    { "source": "/nyc", "destination": "/nyc-guide" },
+    { "source": "/nyc-fr", "destination": "/nyc-guide-fr" }
   ]
 }
