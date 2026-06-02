@@ -240,11 +240,8 @@
         <div class="event-body">
           <p class="event-name">Picnic in Prospect Park</p>
           <p class="event-location">Prospect Park, Brooklyn</p>
-          <button class="event-toggle open" aria-expanded="true">Details <span class="event-toggle-chevron">▴</span></button>
-          <div class="event-detail open">
-            <p class="event-note">Kick off the wedding weekend with a casual picnic on the Long Meadow at Prospect Park — Brooklyn's most beloved green space. We'll claim a spot and have snacks, drinks, and blankets ready. Just bring yourselves and an appetite. It's a perfect low-key way to meet fellow guests and shake off any travel fatigue before the big day.</p>
-            <a href="https://www.prospectpark.org/" class="event-link" target="_blank" rel="noopener">Prospect Park →</a>
-          </div>
+          <p class="event-note">Kick off the wedding weekend with a casual picnic on the Long Meadow at Prospect Park — Brooklyn's most beloved green space. We'll claim a spot and have snacks, drinks, and blankets ready. Just bring yourselves and an appetite. It's a perfect low-key way to meet fellow guests and shake off any travel fatigue before the big day.</p>
+          <a href="https://www.prospectpark.org/" class="event-link" target="_blank" rel="noopener">Prospect Park →</a>
         </div>
       </div>
 
@@ -253,10 +250,7 @@
         <div class="event-body">
           <p class="event-name">Drinks at a local bar</p>
           <p class="event-location">Brooklyn</p>
-          <button class="event-toggle open" aria-expanded="true">Details <span class="event-toggle-chevron">▴</span></button>
-          <div class="event-detail open">
-            <p class="event-note">After the picnic, we'll migrate to a neighborhood bar nearby — a great chance to keep the energy going and get everyone properly introduced. We'll share the exact spot on the day. Follow our lead!</p>
-          </div>
+          <p class="event-note">After the picnic, we'll migrate to a neighborhood bar nearby — a great chance to keep the energy going and get everyone properly introduced. We'll share the exact spot on the day. Follow our lead!</p>
         </div>
       </div>
 
@@ -280,10 +274,7 @@
         <div class="event-body">
           <p class="event-name">The Wedding of Nick &amp; Daniel</p>
           <p class="event-location">The W Loft &nbsp;·&nbsp; 240 Kent Ave, Brooklyn, NY 11211</p>
-          <button class="event-toggle open" aria-expanded="true">Details <span class="event-toggle-chevron">▴</span></button>
-          <div class="event-detail open">
-            <p class="event-note">The main event. Ceremony on the rooftop with views of the Manhattan skyline, followed by a champagne toast, cocktail hour, a Peruvian feast from Jora, and dancing until midnight. Doors open at 5:00 pm. All the details — food, dress code, getting there — are on the <a href="wedding.html" style="color:var(--gold);">main wedding page</a>.</p>
-          </div>
+          <p class="event-note">The main event. Ceremony on the rooftop with views of the Manhattan skyline, followed by a champagne toast, cocktail hour, a Peruvian feast from Jora, and dancing until midnight. Doors open at 5:00 pm. All the details — food, dress code, getting there — are on the <a href="wedding.html" style="color:var(--gold);">main wedding page</a>.</p>
         </div>
       </div>
 
@@ -305,11 +296,8 @@
         <div class="event-body">
           <p class="event-name">Brunch at Radegast Hall &amp; Biergarten</p>
           <p class="event-location">113 N 3rd St, Brooklyn, NY 11249</p>
-          <button class="event-toggle open" aria-expanded="true">Details <span class="event-toggle-chevron">▴</span></button>
-          <div class="event-detail open">
-            <p class="event-note">The perfect morning-after: a sprawling German beer hall right in the heart of Williamsburg, with great food, steins of cold beer (yes, at brunch — it's a beer hall), and a lively, low-key atmosphere made for recapping the night before. No RSVP needed, just show up.</p>
-            <a href="https://www.radegasthall.com/" class="event-link" target="_blank" rel="noopener">Radegast Hall →</a>
-          </div>
+          <p class="event-note">The perfect morning-after: a sprawling German beer hall right in the heart of Williamsburg, with great food, steins of cold beer (yes, at brunch — it's a beer hall), and a lively, low-key atmosphere made for recapping the night before. No RSVP needed, just show up.</p>
+          <a href="https://www.radegasthall.com/" class="event-link" target="_blank" rel="noopener">Radegast Hall →</a>
         </div>
       </div>
 
@@ -318,10 +306,7 @@
         <div class="event-body">
           <p class="event-name">Daniel's Birthday — Rooftop in Gowanus</p>
           <p class="event-location">Gowanus, Brooklyn</p>
-          <button class="event-toggle open" aria-expanded="true">Details <span class="event-toggle-chevron">▴</span></button>
-          <div class="event-detail open">
-            <p class="event-note">The weekend isn't done yet. Join us for Daniel's birthday celebration on a rooftop in Gowanus — expect Brooklyn skyline views, good music, and everyone you just danced with the night before. More details and the exact address to follow closer to the date.</p>
-          </div>
+          <p class="event-note">The weekend isn't done yet. Join us for Daniel's birthday celebration on a rooftop in Gowanus — expect Brooklyn skyline views, good music, and everyone you just danced with the night before. More details and the exact address to follow closer to the date.</p>
         </div>
       </div>
 
@@ -338,14 +323,5 @@
   <a href="wedding.html" class="footer-back">← Back to wedding site</a>
 </footer>
 
-<script>
-  document.querySelectorAll('.event-toggle').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const open = btn.classList.toggle('open');
-      btn.nextElementSibling.classList.toggle('open');
-      btn.setAttribute('aria-expanded', open);
-    });
-  });
-</script>
 </body>
 </html>
