@@ -306,7 +306,69 @@
       color: rgba(247,243,236,0.6); font-size: 0.9rem;
     }
 
-    /* ─── FAQ ────────────────────────────────────────────────── */
+    /* ─── Wedding Weekend ───────────────────────────────────── */
+    .weekend-toggle {
+      margin-top: 3rem;
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      background: var(--white);
+      overflow: hidden;
+    }
+    .weekend-toggle-btn {
+      width: 100%; background: none; border: none; cursor: pointer;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.5rem 1.75rem; text-align: left;
+      transition: background 0.2s;
+    }
+    .weekend-toggle-btn:hover { background: rgba(184,152,90,0.05); }
+    .weekend-toggle-header {
+      display: flex; flex-direction: column; gap: 0.25rem;
+    }
+    .weekend-toggle-label {
+      font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--gold);
+    }
+    .weekend-toggle-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem; color: var(--navy);
+    }
+    .weekend-content {
+      max-height: 0; overflow: hidden;
+      transition: max-height 0.5s ease;
+    }
+    .weekend-toggle.open .weekend-content { max-height: 1200px; }
+    .weekend-content-inner {
+      padding: 0 1.75rem 1.75rem;
+      border-top: 1px solid var(--border);
+    }
+    .weekend-day {
+      padding-top: 1.5rem;
+    }
+    .weekend-day + .weekend-day {
+      border-top: 1px solid var(--border);
+      margin-top: 1.5rem;
+    }
+    .weekend-day-label {
+      font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 0.5rem;
+    }
+    .weekend-event {
+      margin-bottom: 1rem;
+    }
+    .weekend-event:last-child { margin-bottom: 0; }
+    .weekend-event-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem; color: var(--navy); margin-bottom: 0.1rem;
+    }
+    .weekend-event-time {
+      font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 0.35rem;
+    }
+    .weekend-event-desc {
+      font-size: 0.88rem; color: var(--muted); line-height: 1.65; margin-bottom: 0;
+    }
+
+        /* ─── FAQ ────────────────────────────────────────────────── */
     #faq { background: var(--cream); }
     .faq-list { margin-top: 2rem; }
     .faq-item {
@@ -586,28 +648,45 @@
       </div>
 
     </div>
-  </div>
-</section>
 
-<!-- ─── Hébergement ────────────────────────────────────────── -->
-<section id="stay">
-  <div class="section-inner">
-    <p class="section-label">Hébergement</p>
-    <h2 class="section-title">Où <em>dormir</em></h2>
-    <div class="section-rule" style="background:var(--gold);"></div>
+    <!-- Weekend Collapsible -->
+    <div class="weekend-toggle open" id="weekendToggle">
+      <div class="weekend-toggle-btn" style="cursor:default; pointer-events:none;">
+        <div class="weekend-toggle-header">
+          <span class="weekend-toggle-label">9–11 juillet 2026</span>
+          <span class="weekend-toggle-title">Le Weekend du Mariage</span>
+        </div>
+      </div>
+      <div class="weekend-content">
+        <div class="weekend-content-inner">
 
-    <p>Nous avons négocié un code de réduction dans un hôtel à proximité pour nos invités. Brooklyn regorge d'excellentes options, mais c'est notre recommandation principale pour se loger.</p>
+          <div class="weekend-day">
+            <p class="weekend-day-label">Jeudi 9 juillet</p>
+            <div class="weekend-event">
+              <p class="weekend-event-name">Retrouvailles au Time Out New York</p>
+              <p class="weekend-event-time">17h00 – 20h00 &nbsp;·&nbsp; <a href="https://maps.app.goo.gl/iekS3KZ6WLXFDKJL7" target="_blank" rel="noopener" style="color:inherit; border-bottom:1px solid rgba(107,107,107,0.4);">Time Out Market, Dumbo</a></p>
+              <p class="weekend-event-desc">Avec de la pluie annoncée, nous nous retrouvons au food hall Time Out New York à Dumbo — les grandes tables au centre permettent de s'installer facilement en groupe. Profitez-en pour grignoter ou prendre un verre parmi les bars et restaurants du lieu, et pour découvrir le Brooklyn Bridge Park et les vues magnifiques sur les deux ponts juste à côté. Métro : York St (F), High St (A/C) ou Clark St (2/3).</p>
+            </div>
+          </div>
 
-    <div class="hotel-card">
-      <p class="hotel-name">Pod Brooklyn</p>
-      <p class="hotel-address">247 Metropolitan Ave, Brooklyn, NY 11211</p>
-      <p style="color:rgba(247,243,236,0.75); font-size:0.95rem;">Un hôtel stylé et contemporain à deux pas du meilleur du quartier de Williamsburg. Chambres modernes, bar sur le toit et accès facile au lieu de réception. Nous avons négocié un tarif de groupe — utilisez le code ci-dessous lors de la réservation.</p>
-      <p class="hotel-code">Code de réduction : <strong>NICKDANIEL26</strong></p>
+          <div class="weekend-day">
+            <p class="weekend-day-label">Samedi 11 juillet — Anniversaire de Daniel</p>
+            <div class="weekend-event">
+              <p class="weekend-event-name">Brunch au Radegast Hall &amp; Biergarten</p>
+              <p class="weekend-event-time">11h00 &nbsp;·&nbsp; 113 N 3rd St, Brooklyn</p>
+              <p class="weekend-event-desc">Une brasserie bien-aimée de Williamsburg — le cadre idéal pour le lendemain de mariage, refaire la soirée autour d'un verre.</p>
+            </div>
+            <div class="weekend-event">
+              <p class="weekend-event-name">40 ans de Daniel — Rooftop à Park Slope</p>
+              <p class="weekend-event-time">19h00 – 23h00 &nbsp;·&nbsp; <a href="https://maps.app.goo.gl/gQY3Bsh2iCQqeCiQ6" target="_blank" rel="noopener" style="color:inherit; border-bottom:1px solid rgba(107,107,107,0.4);">150 4th Ave, Brooklyn</a> &nbsp;·&nbsp; R jusqu'à Union St</p>
+              <p class="weekend-event-desc">Le weekend se termine en beauté avec une fête d'anniversaire sur un rooftop. À l'entrée, dites au portier : « Je viens à l'événement rooftop de Camilla Han-He — Camilla habite à l'appartement 8G. »</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
     </div>
 
-    <div class="stay-note">
-      <strong style="color:rgba(247,243,236,0.7);">Comment y aller :</strong> The W Loft se trouve au 240 Kent Ave, Brooklyn, à environ 10 minutes à pied ou en Uber/Lyft depuis le Pod. Depuis Manhattan, la ligne L (arrêt Bedford Av) ou les lignes J/M/Z (arrêt Marcy Av) sont les options les plus pratiques en métro. Des taxis et VTC seront facilement disponibles tout au long de la soirée.
-    </div>
   </div>
 </section>
 
@@ -785,6 +864,29 @@
     </div>
     </div><!-- /fund-collapse -->
 
+  </div>
+</section>
+
+
+<!-- ─── Hébergement ────────────────────────────────────────── -->
+<section id="stay">
+  <div class="section-inner">
+    <p class="section-label">Hébergement</p>
+    <h2 class="section-title">Où <em>dormir</em></h2>
+    <div class="section-rule" style="background:var(--gold);"></div>
+
+    <p>Nous avons négocié un code de réduction dans un hôtel à proximité pour nos invités. Brooklyn regorge d'excellentes options, mais c'est notre recommandation principale pour se loger.</p>
+
+    <div class="hotel-card">
+      <p class="hotel-name">Pod Brooklyn</p>
+      <p class="hotel-address">247 Metropolitan Ave, Brooklyn, NY 11211</p>
+      <p style="color:rgba(247,243,236,0.75); font-size:0.95rem;">Un hôtel stylé et contemporain à deux pas du meilleur du quartier de Williamsburg. Chambres modernes, bar sur le toit et accès facile au lieu de réception. Nous avons négocié un tarif de groupe — utilisez le code ci-dessous lors de la réservation.</p>
+      <p class="hotel-code">Code de réduction : <strong>NICKDANIEL26</strong></p>
+    </div>
+
+    <div class="stay-note">
+      <strong style="color:rgba(247,243,236,0.7);">Comment y aller :</strong> The W Loft se trouve au 240 Kent Ave, Brooklyn, à environ 10 minutes à pied ou en Uber/Lyft depuis le Pod. Depuis Manhattan, la ligne L (arrêt Bedford Av) ou les lignes J/M/Z (arrêt Marcy Av) sont les options les plus pratiques en métro. Des taxis et VTC seront facilement disponibles tout au long de la soirée.
+    </div>
   </div>
 </section>
 
